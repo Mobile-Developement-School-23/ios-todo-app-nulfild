@@ -110,7 +110,7 @@ extension TodoItem {
         let deadlineTime = Int(columns[3])
         var deadline: Date? = nil
         if let deadlineTime = deadlineTime {
-            let deadline = Date(timeIntervalSince1970: TimeInterval(deadlineTime))
+            deadline = Date(timeIntervalSince1970: TimeInterval(deadlineTime))
         }
         
         let isCompleted = Bool(columns[4]) ?? false

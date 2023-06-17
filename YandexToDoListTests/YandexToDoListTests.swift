@@ -200,4 +200,40 @@ final class YandexToDoListTests: XCTestCase {
         
         XCTAssertTrue(csvString.contains("~"))
     }
+    
+    func testParseTodoItemFromCsvWithImportanceNotNormal() {
+        let deadline = "1686614400"
+        let createDate = "1686614400"
+        let editDate = "1686614400"
+        
+        let someString = "\(id),\(text),\(importance.rawValue),\(deadline),\(isCompleted),\(createDate),\(editDate)"
+        
+        guard let item = TodoItem.parse(csv: someString) else {
+            return
+        }
+        
+        XCTAssertEqual(item.importance.rawValue, importance.rawValue)
+    }
+    
+    func testParseTodoItemFromCsv() {
+        let deadline = "1686614400"
+        let createDate = "1686614400"
+        let editDate = "1686614400"
+        
+        let sampleString = "\(id),\(text),\(importance.rawValue),\(deadline),\(isCompleted),\(createDate),\(editDate)"
+        
+        guard let item = TodoItem.parse(csv: sampleString) else {
+            return
+        }
+        
+        let parts = sampleString.components(separatedBy: ",")
+        
+        XCTAssertEqual(item.id, parts[0])
+        XCTAssertEqual(item.text, parts[1])
+        XCTAssertEqual(item.importance, Importance(rawValue: parts[2]))
+        XCTAssertEqual(item.deadline, Date(timeIntervalSince1970: TimeInterval(parts[3]) ?? 0))
+        XCTAssertEqual(item.isCompleted, Bool(parts[4]))
+        XCTAssertEqual(item.createDate, Date(timeIntervalSince1970: TimeInterval(parts[5]) ?? 0))
+        XCTAssertEqual(item.editDate, Date(timeIntervalSince1970: TimeInterval(parts[6]) ?? 0))
+    }
 }
