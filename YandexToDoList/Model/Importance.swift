@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum Importance: String {
+    case low
+    case normal
+    case important
+}
