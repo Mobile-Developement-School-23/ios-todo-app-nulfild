@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "5B2A6068-23CF-4627-88AD-72B733857618",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:YandexToDoList.xcodeproj",
+      "identifier" : "C4C859E22A3B775F00DC3E14",
+      "name" : "YandexToDoList"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:YandexToDoList.xcodeproj",
+        "identifier" : "C4C859F82A3B776000DC3E14",
+        "name" : "YandexToDoListTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:YandexToDoList.xcodeproj",
+        "identifier" : "C4C85A022A3B776000DC3E14",
+        "name" : "YandexToDoListUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
