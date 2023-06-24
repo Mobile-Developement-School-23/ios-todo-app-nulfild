@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		C45881C42A3D640200C4693E /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45881C32A3D640200C4693E /* FileCache.swift */; };
+		C47F32482A4678C8001F94F6 /* CreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32472A4678C8001F94F6 /* CreationViewController.swift */; };
+		C47F324A2A46791E001F94F6 /* ImportanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32492A46791E001F94F6 /* ImportanceView.swift */; };
+		C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */; };
+		C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32502A46813C001F94F6 /* UIFont+Extension.swift */; };
+		C48448BD2A46908E000CF120 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48448BC2A46908E000CF120 /* Date+Extension.swift */; };
 		C4C859E72A3B775F00DC3E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */; };
 		C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */; };
 		C4C859EB2A3B775F00DC3E14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859EA2A3B775F00DC3E14 /* ViewController.swift */; };
@@ -41,6 +46,11 @@
 /* Begin PBXFileReference section */
 		C45881C32A3D640200C4693E /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		C45881C52A3D6F0600C4693E /* YandexToDoList.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexToDoList.xctestplan; sourceTree = "<group>"; };
+		C47F32472A4678C8001F94F6 /* CreationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreationViewController.swift; sourceTree = "<group>"; };
+		C47F32492A46791E001F94F6 /* ImportanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportanceView.swift; sourceTree = "<group>"; };
+		C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C47F32502A46813C001F94F6 /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		C48448BC2A46908E000CF120 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +93,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C47F32452A467859001F94F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C47F32492A46791E001F94F6 /* ImportanceView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C47F32462A467874001F94F6 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C4C859EA2A3B775F00DC3E14 /* ViewController.swift */,
+				C47F32472A4678C8001F94F6 /* CreationViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C47F324B2A467EDF001F94F6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C47F32502A46813C001F94F6 /* UIFont+Extension.swift */,
+				C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */,
+				C48448BC2A46908E000CF120 /* Date+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C4C859DA2A3B775F00DC3E14 = {
 			isa = PBXGroup;
 			children = (
@@ -107,10 +144,12 @@
 		C4C859E52A3B775F00DC3E14 /* YandexToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				C4C85A162A3B77A500DC3E14 /* Model */,
+				C47F324B2A467EDF001F94F6 /* Extensions */,
+				C4C85A162A3B77A500DC3E14 /* Models */,
+				C47F32452A467859001F94F6 /* Views */,
+				C47F32462A467874001F94F6 /* Controllers */,
 				C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */,
 				C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */,
-				C4C859EA2A3B775F00DC3E14 /* ViewController.swift */,
 				C4C859EC2A3B775F00DC3E14 /* Main.storyboard */,
 				C4C859EF2A3B776000DC3E14 /* Assets.xcassets */,
 				C4C859F12A3B776000DC3E14 /* LaunchScreen.storyboard */,
@@ -136,14 +175,14 @@
 			path = YandexToDoListUITests;
 			sourceTree = "<group>";
 		};
-		C4C85A162A3B77A500DC3E14 /* Model */ = {
+		C4C85A162A3B77A500DC3E14 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				C4C85A172A3B77D000DC3E14 /* TodoItem.swift */,
 				C4C85A192A3B781500DC3E14 /* Importance.swift */,
 				C45881C32A3D640200C4693E /* FileCache.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,11 +317,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4C859EB2A3B775F00DC3E14 /* ViewController.swift in Sources */,
+				C48448BD2A46908E000CF120 /* Date+Extension.swift in Sources */,
 				C4C859E72A3B775F00DC3E14 /* AppDelegate.swift in Sources */,
 				C4C85A1A2A3B781500DC3E14 /* Importance.swift in Sources */,
+				C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */,
 				C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */,
+				C47F324A2A46791E001F94F6 /* ImportanceView.swift in Sources */,
 				C45881C42A3D640200C4693E /* FileCache.swift in Sources */,
 				C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */,
+				C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */,
+				C47F32482A4678C8001F94F6 /* CreationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
