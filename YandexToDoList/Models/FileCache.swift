@@ -25,7 +25,7 @@ class FileCache {
     
     func saveToJson(to file: String) throws {
         let fm = FileManager.default
-        guard let dir = fm.urls(for: .desktopDirectory, in: .userDomainMask).first else {
+        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.wrongNameOfFile
         }
         
@@ -37,7 +37,7 @@ class FileCache {
     
     func loadFromJson(from file: String) throws {
         let fm = FileManager.default
-        guard let dir = fm.urls(for: .desktopDirectory, in: .userDomainMask).first else {
+        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.wrongNameOfFile
         }
         
@@ -57,7 +57,7 @@ class FileCache {
     
     func saveToCsv(to file: String) throws {
         let fm = FileManager.default
-        guard let dir = fm.urls(for: .desktopDirectory, in: .userDomainMask).first else {
+        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.wrongNameOfFile
         }
         
@@ -69,7 +69,7 @@ class FileCache {
     
     func loadFromCsv(from file: String) throws {
         let fm = FileManager.default
-        guard let dir = fm.urls(for: .desktopDirectory, in: .userDomainMask).first else {
+        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
             throw FileCacheError.wrongNameOfFile
         }
         
