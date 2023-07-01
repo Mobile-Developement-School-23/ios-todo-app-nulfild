@@ -13,16 +13,16 @@ extension String {
         formattedString.addAttribute(
             NSAttributedString.Key.strikethroughStyle,
             value: NSUnderlineStyle.single.rawValue,
-            range: NSMakeRange(0, formattedString.length)
+            range: NSRange(location: 0, length: formattedString.length)
         )
         formattedString.addAttribute(
             NSAttributedString.Key.foregroundColor,
             value: UIColor.labelTertiary,
-            range: NSMakeRange(0, formattedString.length)
+            range: NSRange(location: 0, length: formattedString.length)
         )
         return formattedString
     }
-    
+
     var attributedString: NSMutableAttributedString {
         return NSMutableAttributedString(string: self)
     }

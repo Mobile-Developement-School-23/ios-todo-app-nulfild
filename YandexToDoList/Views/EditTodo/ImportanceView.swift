@@ -8,9 +8,9 @@
 import UIKit
 
 class ImportanceView: UIView {
-    
+
     var deadline: Date?
-    
+
     private lazy var stackViewAll: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -21,7 +21,7 @@ class ImportanceView: UIView {
         stackView.backgroundColor = .clear
         return stackView
     }()
-    
+
     private lazy var deadlineStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
@@ -30,7 +30,7 @@ class ImportanceView: UIView {
         stack.spacing = 0
         return stack
     }()
-    
+
     private lazy var stackViewImportance: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -39,7 +39,7 @@ class ImportanceView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private lazy var importanceLabel: UILabel = {
         let label = UILabel()
         label.text = "Важность"
@@ -48,12 +48,12 @@ class ImportanceView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     lazy var segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["", "нет", ""])
         let lowImage = UIImage(named: "Low")
         let importantImage = UIImage(named: "Important")
-        
+
         segment.setImage(lowImage, forSegmentAt: 0)
         segment.setImage(importantImage, forSegmentAt: 2)
         //        segment.backgroundColor = .supportOverlayColorForSwitch
@@ -61,7 +61,7 @@ class ImportanceView: UIView {
         segment.translatesAutoresizingMaskIntoConstraints = false
         return segment
     }()
-    
+
     private lazy var divider1: UIView = {
         let view = UIView()
         view.backgroundColor = .supportSeparator
@@ -74,7 +74,7 @@ class ImportanceView: UIView {
         view.alpha = 0
         return view
     }()
-    
+
     private lazy var stackViewDeadline: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -83,7 +83,7 @@ class ImportanceView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     private lazy var deadlineLabel: UILabel = {
         let label = UILabel()
         label.text = "Сделать до"
@@ -92,13 +92,13 @@ class ImportanceView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
+
     lazy var deadlineSwitch: UISwitch = {
         let deadlineSwitch = UISwitch()
         deadlineSwitch.addTarget(self, action: #selector(deadlineDidSwitch), for: .valueChanged)
         return deadlineSwitch
     }()
-    
+
     lazy var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
@@ -115,7 +115,7 @@ class ImportanceView: UIView {
         picker.translatesAutoresizingMaskIntoConstraints = false
         return picker
     }()
-    
+
     lazy var deadlineButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("25 июня 2021", for: .normal)
@@ -126,28 +126,28 @@ class ImportanceView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
         setConstraints()
         setupDate()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc private func deadlineDidSwitch() {
         showDeadlineButton(bool: true)
-        
+
         if !deadlineSwitch.isOn && !datePicker.isHidden {
             deadlineButtonDidTapped()
         } else if deadlineSwitch.isOn {
             deadlineButton.setTitle(datePicker.date.toString, for: .normal)
         }
     }
-    
+
     func showDeadlineButton(bool: Bool) {
         if bool {
             UIView.animate(withDuration: 0.5, animations: { [weak self] in
@@ -160,15 +160,15 @@ class ImportanceView: UIView {
             self.deadlineButton.isHidden = true
         }
     }
-    
+
     @objc func deadlineButtonDidTapped() {
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
             guard let self = self else { return }
             self.setDefaultDatePicker()
-            
+
         })
     }
-    
+
     private func setupDate() {
         guard deadline == nil else { return }
         let calendar = Calendar.current
@@ -177,31 +177,31 @@ class ImportanceView: UIView {
             datePicker.date = nextDay
         }
     }
-    
+
     @objc private func datePickerValueChanged() {
         deadlineButton.setTitle(datePicker.date.toString, for: .normal)
     }
-    
+
     private func setDefaultDatePicker() {
         setupDate()
-        
+
         self.datePicker.isHidden = datePicker.isHidden ? false : true
         self.divider2.isHidden = divider2.isHidden ? false : true
         self.divider2.alpha = divider2.isHidden ? 0.0 : 1.0
     }
-    
+
     func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .backSecondary
         layer.cornerRadius = 16
-        
+
         addSubview(stackViewAll)
-        
+
         stackViewAll.addArrangedSubview(stackViewImportance)
         stackViewImportance.addArrangedSubview(importanceLabel)
         stackViewImportance.addArrangedSubview(segmentControl)
         stackViewAll.addArrangedSubview(divider1)
-        
+
         stackViewDeadline.addArrangedSubview(deadlineStackView)
         deadlineStackView.addArrangedSubview(deadlineLabel)
         deadlineStackView.addArrangedSubview(deadlineButton)
@@ -210,30 +210,29 @@ class ImportanceView: UIView {
         stackViewAll.addArrangedSubview(divider2)
         stackViewAll.addArrangedSubview(datePicker)
     }
-    
+
     func setConstraints() {
         NSLayoutConstraint.activate([
             stackViewAll.topAnchor.constraint(equalTo: topAnchor),
-            stackViewAll.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16), //16
-            stackViewAll.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12), //-12
+            stackViewAll.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16), // 16
+            stackViewAll.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12), // -12
             stackViewAll.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
+
             //            stackViewImportance.heightAnchor.constraint(equalToConstant: 56),
-            
+
             stackViewImportance.heightAnchor.constraint(equalToConstant: 56),
-            
+
             segmentControl.widthAnchor.constraint(equalToConstant: 150),
             segmentControl.heightAnchor.constraint(equalToConstant: 36),
-            
+
             stackViewDeadline.heightAnchor.constraint(equalToConstant: 56),
-            
+
             deadlineLabel.heightAnchor.constraint(equalToConstant: 22),
             deadlineButton.heightAnchor.constraint(equalToConstant: 18),
-            
+
             divider1.heightAnchor.constraint(equalToConstant: 0.666),
-            divider2.heightAnchor.constraint(equalToConstant: 0.666),
+            divider2.heightAnchor.constraint(equalToConstant: 0.666)
         ])
     }
-    
-    
+
 }

@@ -11,10 +11,10 @@ class CustomLabel: UILabel {
 
     init(text: String) {
         super.init(frame: .zero)
-        
+
         self.text = text
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -27,7 +27,7 @@ extension CustomLabel {
         font = .body
         textColor = .labelPrimary
     }
-    
+
     private func setConstraints() {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: 22)

@@ -6,28 +6,29 @@
 //
 
 import UIKit
+import FileCachePackage
 
 class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
-    let fc = FileCache()
+    let fc = FileCache<TodoItem>()
     private var todoItems: [TodoItem] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
         setupNavBar()
         updateData()
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateData()
     }
-    
+
     func updateData() {
         try? fc.loadFromJson(from: "TodoItems")
-        todoItems = Array(fc.items.values)
+        todoItems = Array(fc.todoItemsList.values)
         todoItems.sort(by: {$0.createDate > $1.createDate})
         todoListView?.updateData(todoItems: todoItems)
     }
@@ -42,7 +43,7 @@ extension TodoListViewController: TodoListViewDelegate {
         let navController = UINavigationController(rootViewController: editTodoViewController)
         present(navController, animated: true)
     }
-    
+
     func creatureButtonDidTapped() {
         let editTodoViewController = EditTodoViewController(todoItem: nil)
         editTodoViewController.delegate = self
@@ -50,12 +51,12 @@ extension TodoListViewController: TodoListViewDelegate {
         present(navController, animated: true)
     }
     func saveTodo(_ todoItem: TodoItem) {
-        fc.add(item: todoItem)
+        _ = fc.addItem(todoItem)
         try? fc.saveToJson(to: "TodoItems")
         updateData()
     }
     func deleteTodo(_ todoItem: TodoItem) {
-        fc.remove(id: todoItem.id)
+        _ = fc.deleteItem(with: todoItem.id)
         try? fc.saveToJson(to: "TodoItems")
         updateData()
     }
@@ -69,12 +70,10 @@ extension TodoListViewController {
         todoListView?.delegate = self
         view = todoListView
     }
-    
+
     private func setupNavBar() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 0)
     }
 }
-
-
