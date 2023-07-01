@@ -15,7 +15,7 @@ struct TodoItem {
     let isCompleted: Bool
     let createDate: Date
     let editDate: Date?
-    
+
     init(id: String = UUID().uuidString,  // TODO: Из-за условия тз пришлось поменять, было: UUID().uuidStrin
          text: String,
          importance: Importance,
@@ -37,11 +37,11 @@ struct TodoItem {
 
 extension TodoItem {
     static func parse(json: Any) -> TodoItem? {
-        
+
         guard let todo = json as? [String: Any] else {
             return nil
         }
-        
+
         guard
             let id = (todo["id"] as? String).flatMap({ String($0) }),
             let text = todo["text"] as? String,
@@ -49,12 +49,12 @@ extension TodoItem {
         else {
             return nil
         }
-        
+
         let importance = (todo["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .normal
         let deadline = (todo["deadline"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
         let isCompleted = (todo["isCompleted"] as? Bool) ?? false
         let editDate = (todo["editDate"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
-        
+
         return TodoItem(id: id,
                         text: text,
                         importance: importance,
@@ -63,9 +63,7 @@ extension TodoItem {
                         createDate: createDate,
                         editDate: editDate)
     }
-    
-    
-    
+
     var json: Any {
         var todo: [String: Any] = [:]
         todo["id"] = id
@@ -90,11 +88,11 @@ extension TodoItem {
 extension TodoItem {
     static func parse(csv: String) -> TodoItem? {
         let columns = csv.components(separatedBy: ",")
-        
+
         guard columns.count == 7 else {
             return nil
         }
-        
+
         guard
             columns[0] != "",
             columns[1] != "",
@@ -102,32 +100,32 @@ extension TodoItem {
         else {
             return nil
         }
-        
+
         let id = columns[0]
         let text = columns[1].replacingOccurrences(of: "~", with: ",")
         let importanceString = columns[2] != "" ? columns[2] : Importance.normal.rawValue
-            
+
         let deadlineTime = Int(columns[3])
-        var deadline: Date? = nil
+        var deadline: Date?
         if let deadlineTime = deadlineTime {
             deadline = Date(timeIntervalSince1970: TimeInterval(deadlineTime))
         }
-        
+
         let isCompleted = Bool(columns[4]) ?? false
         let createDate = Date(timeIntervalSince1970: TimeInterval(createDateTime))
-        
+
         let editDateTime = Int(columns[6])
-        var editDate: Date? = nil
+        var editDate: Date?
         if let editDateTime = editDateTime {
             editDate = Date(timeIntervalSince1970: TimeInterval(editDateTime))
         }
-        
+
         guard
             let importance = Importance(rawValue: importanceString)
         else {
             return nil
         }
-        
+
         return TodoItem(id: id,
                         text: text,
                         importance: importance,
@@ -136,7 +134,7 @@ extension TodoItem {
                         createDate: createDate,
                         editDate: editDate)
     }
-    
+
     var csv: String {
         let textCsv = text.replacingOccurrences(of: ",", with: "~")
         let importanceString = importance != .normal ? importance.rawValue : ""
@@ -144,10 +142,7 @@ extension TodoItem {
         let deadlineString = deadline != nil ? String(deadline?.timeIntervalSince1970 ?? 0) : ""
         let createDateString = String(createDate.timeIntervalSince1970)
         let editDateString = editDate != nil ? String(editDate?.timeIntervalSince1970 ?? 0) : ""
-        
+
         return "\(id), \(textCsv), \(importanceString), \(deadlineString), \(isDoneString), \(createDateString), \(editDateString)"
     }
 }
-
-
-

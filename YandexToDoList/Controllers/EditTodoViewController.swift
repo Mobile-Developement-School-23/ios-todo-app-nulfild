@@ -8,37 +8,37 @@
 import UIKit
 
 class EditTodoViewController: UIViewController {
-    
+
     private let todoItem: TodoItem?
     private var editTodoView: EditTodoView?
     weak var delegate: TodoListViewController?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
         setupNavBar()
     }
-    
+
     init(todoItem: TodoItem?) {
         self.todoItem = todoItem
-        
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.updateData()
     }
-    
+
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         super.willTransition(to: newCollection, with: coordinator)
         view.setNeedsUpdateConstraints()
     }
-    
+
     @objc private func cancelButtonDidTapped() {
         dismiss(animated: true)
     }
@@ -64,11 +64,11 @@ class EditTodoViewController: UIViewController {
 // MARK: EditTodoViewDelegate
 
 extension EditTodoViewController: EditTodoViewDelegate {
-    
+
     // Предотвращение сохранения todo с пробелами
     func textDidChange(_ textView: UITextView) {
         let trimmedText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         if !trimmedText.isEmpty {
             if let rightButton = navigationItem.rightBarButtonItem {
                 rightButton.isEnabled = true
@@ -81,7 +81,7 @@ extension EditTodoViewController: EditTodoViewDelegate {
             }
         }
     }
-    
+
     // Удаление placeholder'a
     func textDidBeginEditing(textView: UITextView) {
         if textView.textColor?.cgColor == UIColor.labelTertiary.cgColor {
@@ -89,11 +89,11 @@ extension EditTodoViewController: EditTodoViewDelegate {
             textView.textColor = .labelPrimary
         }
     }
-    
+
     // Добавление placeholder'a
     func textDidEndEditing(textView: UITextView) {
         let trimmedText = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
-        
+
         if textView.text.isEmpty {
             textView.text = "Что надо сделать?"
             textView.textColor = .labelTertiary
@@ -105,14 +105,14 @@ extension EditTodoViewController: EditTodoViewDelegate {
             }
         }
     }
-    
+
     func deleteButtonDidTapped(_ todoItem: TodoItem) {
         // TODO: Перенести это все в главный контроллер, чтобы не плодить экземпляры FileCache
         delegate?.fc.remove(id: todoItem.id)
         try? delegate?.fc.saveToJson(to: "TodoItems")
         dismiss(animated: true)
     }
-    
+
 }
 
 // MARK: Configuration of View
@@ -123,26 +123,26 @@ extension EditTodoViewController {
         editTodoView?.delegate = self
         view = self.editTodoView
     }
-    
+
     private func setupNavBar() {
         title = "Дело"
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.headline]
         view.backgroundColor = .backPrimary
-        
+
         let cancelButton = UIBarButtonItem(
             title: "Отменить",
             style: .plain,
             target: self,
             action: #selector(cancelButtonDidTapped)
         )
-        
+
         let saveButton = UIBarButtonItem(
             title: "Сохранить",
             style: .done,
             target: self,
             action: #selector(saveButtonDidTapped)
         )
-        
+
         cancelButton.tintColor = .blue
         if todoItem != nil {
             saveButton.isEnabled = true
@@ -151,7 +151,7 @@ extension EditTodoViewController {
             saveButton.isEnabled = false
             saveButton.tintColor = .labelTertiary
         }
-        
+
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton
     }

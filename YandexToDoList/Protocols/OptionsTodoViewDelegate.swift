@@ -7,6 +7,6 @@
 
 import Foundation
 
-//protocol OptionsTodoViewDelegate: AnyObject {
+// protocol OptionsTodoViewDelegate: AnyObject {
 //    <#requirements#>
-//}
+// }

@@ -8,19 +8,19 @@
 import UIKit
 
 class EditTodoView: UIView {
-    
+
     var todoItem: TodoItem?
     var keyboardHeight: CGFloat = 0
-    
+
     weak var delegate: EditTodoViewDelegate?
-    
+
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .backPrimary
         return scrollView
     }()
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -29,7 +29,7 @@ class EditTodoView: UIView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
-    
+
     lazy var textView: UITextView = {
         let textView = UITextView()
         textView.textContainerInset = UIEdgeInsets(top: 17, left: 16, bottom: 12, right: 16)
@@ -43,11 +43,11 @@ class EditTodoView: UIView {
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
-    
+
     private var textViewHeightConstraint: NSLayoutConstraint?
-    
+
     lazy var optionsTodoView = OptionsTodoView()
-    
+
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Удалить", for: .normal)
@@ -61,10 +61,10 @@ class EditTodoView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     init(todoItem: TodoItem?) {
         super.init(frame: .zero)
-        
+
         self.todoItem = todoItem
         optionsTodoView.delegate = self
         setupView()
@@ -72,21 +72,21 @@ class EditTodoView: UIView {
         updateViewWithTodoItem()
         configureGestureRecognizer()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         if frame.width > frame.height {
             textViewHeightConstraint?.constant = frame.height - 76
         } else {
             textViewHeightConstraint?.constant = 120
         }
     }
-    
+
     @objc func deleteButtonDidTapped() {
         if let todoItem {
             delegate?.deleteButtonDidTapped(todoItem)
@@ -94,11 +94,11 @@ class EditTodoView: UIView {
             fatalError("ERROR")
         }
     }
-    
+
     @objc func dismissKeyboard() {
         endEditing(true)
     }
-    
+
     @objc func keyboardDidShow(keyboardShowNotification notification: Notification) {
         if let userInfo = notification.userInfo,
            let keyboardRectangle = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
@@ -116,14 +116,14 @@ extension EditTodoView: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         delegate?.textDidBeginEditing(textView: textView)
     }
-    
+
     func textViewDidChange(_ textView: UITextView) {
         delegate?.textDidChange(textView)
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         delegate?.textDidEndEditing(textView: textView)
-        
+
         scrollView.contentInset = UIEdgeInsets(
             top: 0, left: 0, bottom: 0, right: 0
         )
@@ -135,14 +135,14 @@ extension EditTodoView: UITextViewDelegate {
 extension EditTodoView {
     private func setupView() {
         addSubview(scrollView)
-        
+
         scrollView.addSubview(stackView)
-        
+
         stackView.addArrangedSubview(textView)
         stackView.addArrangedSubview(optionsTodoView)
         stackView.addArrangedSubview(deleteButton)
     }
-    
+
     private func updateViewWithTodoItem() {
         // TODO: Проверить загрузки экрана с Todo Item'ом
         guard let todoItem else {
@@ -169,38 +169,36 @@ extension EditTodoView {
 
         deleteButton.isEnabled = true
     }
-    
+
     private func configureGestureRecognizer() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false
 
         scrollView.addGestureRecognizer(tap)
-        
+
         NotificationCenter.default
             .addObserver(self,
                          selector: #selector(keyboardDidShow(keyboardShowNotification:)),
                          name: UIResponder.keyboardDidShowNotification,
                          object: nil)
     }
-    
+
     private func setConstraints() {
         textViewHeightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120)
         textViewHeightConstraint?.isActive = true
-        
+
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -keyboardHeight),
-            
-            
+
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32),
-            
+
             deleteButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
 }
-

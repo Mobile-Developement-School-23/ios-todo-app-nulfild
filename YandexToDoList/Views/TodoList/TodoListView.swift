@@ -12,9 +12,9 @@ class TodoListView: UIView {
     var todoItems: [TodoItem]
     var notCompletedTodoItems: [TodoItem]
     var isCompletedShowing: Bool = false
-    
+
     let headerTableView = HeaderTableView(frame: CGRect(x: 0, y: 0, width: 0, height: 42))
-    
+
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -28,7 +28,7 @@ class TodoListView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-    
+
     private lazy var creatureButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(nil, action: #selector(creatureButtonDidTapped), for: .touchUpInside)
@@ -40,27 +40,27 @@ class TodoListView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
+
     // MARK: init()
-    
+
     init(todoItems: [TodoItem]) {
         self.todoItems = todoItems
         self.notCompletedTodoItems = todoItems.filter({!$0.isCompleted})
         super.init(frame: .zero)
-        
+
         self.headerTableView.delegate = self
         setupView()
         setConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     @objc func creatureButtonDidTapped() {
         delegate?.creatureButtonDidTapped()
     }
-    
+
     func updateCompletition(todoItem: TodoItem) {
         delegate?.saveTodo(TodoItem(id: todoItem.id,
                                     text: todoItem.text,
@@ -70,11 +70,11 @@ class TodoListView: UIView {
                                     createDate: todoItem.createDate,
                                     editDate: todoItem.editDate))
     }
-    
+
     func deleteTodo(todoItem: TodoItem) {
         delegate?.deleteTodo(todoItem)
     }
-    
+
     func openEditTodo(indexPath: IndexPath) {
         if (indexPath.row == todoItems.count && isCompletedShowing) || (indexPath.row == notCompletedTodoItems.count && !isCompletedShowing) {
             delegate?.creatureButtonDidTapped()
@@ -86,7 +86,7 @@ class TodoListView: UIView {
             }
         }
     }
-    
+
     func getCurrentTodoItem(indexPath: IndexPath) -> TodoItem {
         if isCompletedShowing {
             return todoItems[indexPath.row]
@@ -106,7 +106,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             return notCompletedTodoItems.count + 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == todoItems.count && isCompletedShowing) || (indexPath.row == notCompletedTodoItems.count && !isCompletedShowing) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NewTodoTableViewCell.identifier, for: indexPath) as? NewTodoTableViewCell else {
@@ -129,9 +129,9 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
+
     // Скругялем крайние ячейки
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cornerRadius: CGFloat = 16
         if tableView.isFirstRow(indexPath) && tableView.isLastRow(indexPath) {
@@ -147,14 +147,14 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             cell.roundCorners(corners: [], radius: 0.0)
         }
     }
-    
+
     // Реализация свайпа ячеек
-    
+
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if (indexPath.row == todoItems.count && isCompletedShowing) || (indexPath.row == notCompletedTodoItems.count && !isCompletedShowing) {
             return nil
         }
-        
+
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completion) in
             guard let self = self else { return }
             var todoItem: TodoItem
@@ -166,18 +166,18 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             updateCompletition(todoItem: todoItem)
             completion(true)
         }
-        
+
         action.image = UIImage(named: "DoneAction")
         action.backgroundColor = .green
-        
+
         return UISwipeActionsConfiguration(actions: [action])
     }
-    
+
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if (indexPath.row == todoItems.count && isCompletedShowing) || (indexPath.row == notCompletedTodoItems.count && !isCompletedShowing) {
             return nil
         }
-        
+
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completion) in
             guard let self = self else { return }
             var todoItem: TodoItem
@@ -189,13 +189,13 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             deleteTodo(todoItem: todoItem)
             completion(true)
         }
-        
+
         action.image = UIImage(named: "DeleteAction")
         action.backgroundColor = .red
-        
+
         return UISwipeActionsConfiguration(actions: [action])
     }
-    
+
     // Анимация при нажатии на ячейку
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.4) {
@@ -207,36 +207,36 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
                 selectedCell?.transform = .identity
                 tableView.deselectRow(at: indexPath, animated: true)
             }
-            
+
             self.openEditTodo(indexPath: indexPath)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { actions -> UIMenu? in
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ -> UIMenu? in
             // Создайте действия контекстного меню
-            guard let _ = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return nil }
+            guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return nil }
             let action1 = UIAction(title: "Выполнить", image: UIImage(systemName: "checkmark.circle.fill")) { _ in
                 self.updateCompletition(todoItem: self.getCurrentTodoItem(indexPath: indexPath))
             }
-            
+
             let action2 = UIAction(title: "Редактировать", image: UIImage(systemName: "pencil")) { _ in
                 self.openEditTodo(indexPath: indexPath)
             }
-            
+
             let action3 = UIAction(title: "Удалить", image: UIImage(systemName: "trash.fill")) { _ in
                 self.deleteTodo(todoItem: self.getCurrentTodoItem(indexPath: indexPath))
             }
-            
+
             // Создайте меню с действиями
             let menu = UIMenu(title: "Дополнительные действия", children: [action1, action2, action3])
-            
+
             return menu
         }
-        
+
         return configuration
     }
-    
+
 }
 
 // MARK: Методы для скругления ячеек
@@ -245,7 +245,7 @@ extension UITableView {
     func isFirstRow(_ indexPath: IndexPath) -> Bool {
         return indexPath.row == 0
     }
-    
+
     func isLastRow(_ indexPath: IndexPath) -> Bool {
         let lastSectionIndex = numberOfSections - 1
         let lastRowIndex = numberOfRows(inSection: lastSectionIndex) - 1
@@ -289,28 +289,27 @@ extension TodoListView {
         tableView.reloadData()
         headerTableView.updateTitleLabel(to: todoItems.filter({$0.isCompleted}).count)
     }
-    
+
     private func setupView() {
         backgroundColor = .backPrimary
-        
+
         addSubview(tableView)
         addSubview(creatureButton)
-        
+
         tableView.tableHeaderView = headerTableView
     }
-    
+
     private func setConstraints() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            
+
             creatureButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             creatureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             creatureButton.widthAnchor.constraint(equalToConstant: 44),
-            creatureButton.heightAnchor.constraint(equalToConstant: 44),
+            creatureButton.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
 }

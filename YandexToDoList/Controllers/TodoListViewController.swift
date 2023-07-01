@@ -11,20 +11,20 @@ class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
     let fc = FileCache()
     private var todoItems: [TodoItem] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
         setupNavBar()
         updateData()
     }
-    
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateData()
     }
-    
+
     func updateData() {
         try? fc.loadFromJson(from: "TodoItems")
         todoItems = Array(fc.items.values)
@@ -42,7 +42,7 @@ extension TodoListViewController: TodoListViewDelegate {
         let navController = UINavigationController(rootViewController: editTodoViewController)
         present(navController, animated: true)
     }
-    
+
     func creatureButtonDidTapped() {
         let editTodoViewController = EditTodoViewController(todoItem: nil)
         editTodoViewController.delegate = self
@@ -69,12 +69,10 @@ extension TodoListViewController {
         todoListView?.delegate = self
         view = todoListView
     }
-    
+
     private func setupNavBar() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 0)
     }
 }
-
-
