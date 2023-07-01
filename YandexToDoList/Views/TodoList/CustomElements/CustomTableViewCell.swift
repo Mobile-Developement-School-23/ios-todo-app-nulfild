@@ -85,7 +85,7 @@ class CustomTableViewCell: UITableViewCell {
 
     private lazy var arrowImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "Arrow")
+        image.image = UIImage(named: "arrow")
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -114,7 +114,7 @@ class CustomTableViewCell: UITableViewCell {
         if doneButton.isSelected {
             updateButton(with: todoItem)
         } else {
-            doneButton.setImage(UIImage(named: "DoneButtonOn"), for: .normal)
+            doneButton.setImage(UIImage(named: "doneButtonOn"), for: .normal)
         }
         doneButton.isSelected.toggle()
         delegate?.saveTodo(TodoItem(id: todoItem.id,
@@ -158,12 +158,12 @@ extension CustomTableViewCell {
 
         switch todoItem.importance {
         case .low:
-            importanceImageView.image = UIImage(named: "Low")
+            importanceImageView.image = UIImage(named: "low")
             importanceImageView.isHidden = false
         case .normal:
             importanceImageView.isHidden = true
         case .important:
-            importanceImageView.image = UIImage(named: "Important")
+            importanceImageView.image = UIImage(named: "important")
             importanceImageView.isHidden = false
         }
 
@@ -180,13 +180,13 @@ extension CustomTableViewCell {
     func updateButton(with todo: TodoItem?) {
         guard let todo else { fatalError("Error") }
         if todo.isCompleted {
-            doneButton.setImage(UIImage(named: "DoneButtonOn"), for: .normal)
+            doneButton.setImage(UIImage(named: "doneButtonOn"), for: .normal)
             doneButton.isSelected = true
         } else {
             if todo.importance == .important {
-                doneButton.setImage(UIImage(named: "DoneButtonImportant"), for: .normal)
+                doneButton.setImage(UIImage(named: "doneButtonImportant"), for: .normal)
             } else {
-                doneButton.setImage(UIImage(named: "DoneButton"), for: .normal)
+                doneButton.setImage(UIImage(named: "doneButton"), for: .normal)
             }
         }
     }

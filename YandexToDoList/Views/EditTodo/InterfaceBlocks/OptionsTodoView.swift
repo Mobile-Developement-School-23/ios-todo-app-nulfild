@@ -45,8 +45,8 @@ class OptionsTodoView: UIView {
 
     lazy var segmentControl: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["", "нет", ""])
-        let lowImage = UIImage(named: "Low")
-        let importantImage = UIImage(named: "Important")
+        let lowImage = UIImage(named: "low")
+        let importantImage = UIImage(named: "important")
 
         segment.setImage(lowImage, forSegmentAt: 0)
         segment.setImage(importantImage, forSegmentAt: 2)
