@@ -13,6 +13,7 @@
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
 		C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E502A49D0CF00E30314 /* CustomLabelView.swift */; };
+		C46F17B32A50177000565740 /* FileCachePackage in Frameworks */ = {isa = PBXBuildFile; productRef = C46F17B22A50177000565740 /* FileCachePackage */; };
 		C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */; };
 		C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */; };
 		C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32502A46813C001F94F6 /* UIFont+Extension.swift */; };
@@ -74,7 +75,6 @@
 		C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoViewDelegate.swift; sourceTree = "<group>"; };
 		C48482872A4C8AC60010B1BD /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewDelegate.swift; sourceTree = "<group>"; };
-		C4A11E102A4FD4EA00E98E69 /* FileCachePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FileCachePackage; path = ../FileCachePackage; sourceTree = "<group>"; };
 		C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C46F17B32A50177000565740 /* FileCachePackage in Frameworks */,
 				C4A11E122A4FD54300E98E69 /* FileCachePackage in Frameworks */,
 				C4A11E0C2A4FC48500E98E69 /* CocoaLumberjack in Frameworks */,
 				108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */,
@@ -236,18 +237,9 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		C4A11E0F2A4FD4EA00E98E69 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				C4A11E102A4FD4EA00E98E69 /* FileCachePackage */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		C4C859DA2A3B775F00DC3E14 = {
 			isa = PBXGroup;
 			children = (
-				C4A11E0F2A4FD4EA00E98E69 /* Packages */,
 				C45881C52A3D6F0600C4693E /* YandexToDoList.xctestplan */,
 				C4C859E52A3B775F00DC3E14 /* YandexToDoList */,
 				C4C859FC2A3B776000DC3E14 /* YandexToDoListTests */,
@@ -333,6 +325,7 @@
 			packageProductDependencies = (
 				C4A11E0B2A4FC48500E98E69 /* CocoaLumberjack */,
 				C4A11E112A4FD54300E98E69 /* FileCachePackage */,
+				C46F17B22A50177000565740 /* FileCachePackage */,
 			);
 			productName = YandexToDoList;
 			productReference = C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */;
@@ -408,6 +401,7 @@
 			mainGroup = C4C859DA2A3B775F00DC3E14;
 			packageReferences = (
 				C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+				C46F17B12A50177000565740 /* XCRemoteSwiftPackageReference "FileCachePackage" */,
 			);
 			productRefGroup = C4C859E42A3B775F00DC3E14 /* Products */;
 			projectDirPath = "";
@@ -862,6 +856,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C46F17B12A50177000565740 /* XCRemoteSwiftPackageReference "FileCachePackage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nulfild/FileCachePackage.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack.git";
@@ -873,6 +875,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C46F17B22A50177000565740 /* FileCachePackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C46F17B12A50177000565740 /* XCRemoteSwiftPackageReference "FileCachePackage" */;
+			productName = FileCachePackage;
+		};
 		C4A11E0B2A4FC48500E98E69 /* CocoaLumberjack */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
