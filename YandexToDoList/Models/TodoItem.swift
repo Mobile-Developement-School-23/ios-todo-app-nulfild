@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import FileCachePackage
 
-struct TodoItem {
+struct TodoItem: IdentifiableType {
     let id: String
     let text: String
     let importance: Importance
@@ -35,7 +36,49 @@ struct TodoItem {
 
 // MARK: - JSON format
 
-extension TodoItem {
+extension TodoItem: JSONConvertible {
+    var json: [String: Any] {
+        var todo: [String: Any] = [:]
+        todo["id"] = id
+        todo["text"] = text
+        if importance != .normal {
+            todo["importance"] = importance.rawValue
+        }
+        if let deadline = deadline {
+            todo["deadline"] = Int(deadline.timeIntervalSince1970)
+        }
+        todo["isCompleted"] = isCompleted
+        todo["createDate"] = Int(createDate.timeIntervalSince1970)
+        if let editDate = editDate {
+            todo["editDate"] = Int(editDate.timeIntervalSince1970)
+        }
+        return todo
+    }
+
+    init?(json: [String: Any]) {
+        guard let id = json["id"] as? String,
+              let text = json["text"] as? String,
+              let isCompleted = json["isCompleted"] as? Bool,
+              let createDate = (json["createDate"] as? Int).flatMap({ Date(timeIntervalSince1970: TimeInterval($0)) })
+        else {
+            return nil
+        }
+
+        let importance = (json["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .normal
+        let deadline = (json["deadline"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
+        let editDate = (json["editDate"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
+
+        self.init(
+            id: id,
+            text: text,
+            importance: importance,
+            deadline: deadline,
+            isCompleted: isCompleted,
+            createDate: createDate,
+            editDate: editDate
+        )
+    }
+
     static func parse(json: Any) -> TodoItem? {
 
         guard let todo = json as? [String: Any] else {
@@ -64,23 +107,6 @@ extension TodoItem {
                         editDate: editDate)
     }
 
-    var json: Any {
-        var todo: [String: Any] = [:]
-        todo["id"] = id
-        todo["text"] = text
-        if importance != .normal {
-            todo["importance"] = importance.rawValue
-        }
-        if let deadline = deadline {
-            todo["deadline"] = Int(deadline.timeIntervalSince1970)
-        }
-        todo["isCompleted"] = isCompleted
-        todo["createDate"] = Int(createDate.timeIntervalSince1970)
-        if let editDate = editDate {
-            todo["editDate"] = Int(editDate.timeIntervalSince1970)
-        }
-        return todo
-    }
 }
 
 // MARK: - CSV format

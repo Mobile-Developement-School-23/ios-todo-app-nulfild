@@ -13,7 +13,6 @@
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
 		C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E502A49D0CF00E30314 /* CustomLabelView.swift */; };
-		C45881C42A3D640200C4693E /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45881C32A3D640200C4693E /* FileCache.swift */; };
 		C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */; };
 		C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */; };
 		C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32502A46813C001F94F6 /* UIFont+Extension.swift */; };
@@ -22,6 +21,8 @@
 		C48482842A4C64BE0010B1BD /* EditTodoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */; };
 		C48482882A4C8AC60010B1BD /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482872A4C8AC60010B1BD /* TodoListView.swift */; };
 		C484828A2A4C8C430010B1BD /* TodoListViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */; };
+		C4A11E0C2A4FC48500E98E69 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = C4A11E0B2A4FC48500E98E69 /* CocoaLumberjack */; };
+		C4A11E122A4FD54300E98E69 /* FileCachePackage in Frameworks */ = {isa = PBXBuildFile; productRef = C4A11E112A4FD54300E98E69 /* FileCachePackage */; };
 		C4C859E72A3B775F00DC3E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */; };
 		C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */; };
 		C4C859EB2A3B775F00DC3E14 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859EA2A3B775F00DC3E14 /* TodoListViewController.swift */; };
@@ -64,7 +65,6 @@
 		C4375E482A49CC2600E30314 /* EditTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoView.swift; sourceTree = "<group>"; };
 		C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDividerView.swift; sourceTree = "<group>"; };
 		C4375E502A49D0CF00E30314 /* CustomLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
-		C45881C32A3D640200C4693E /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		C45881C52A3D6F0600C4693E /* YandexToDoList.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexToDoList.xctestplan; sourceTree = "<group>"; };
 		C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoViewController.swift; sourceTree = "<group>"; };
 		C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -74,6 +74,7 @@
 		C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoViewDelegate.swift; sourceTree = "<group>"; };
 		C48482872A4C8AC60010B1BD /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewDelegate.swift; sourceTree = "<group>"; };
+		C4A11E102A4FD4EA00E98E69 /* FileCachePackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = FileCachePackage; path = ../FileCachePackage; sourceTree = "<group>"; };
 		C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +102,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4A11E122A4FD54300E98E69 /* FileCachePackage in Frameworks */,
+				C4A11E0C2A4FC48500E98E69 /* CocoaLumberjack in Frameworks */,
 				108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -233,9 +236,18 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		C4A11E0F2A4FD4EA00E98E69 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				C4A11E102A4FD4EA00E98E69 /* FileCachePackage */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		C4C859DA2A3B775F00DC3E14 = {
 			isa = PBXGroup;
 			children = (
+				C4A11E0F2A4FD4EA00E98E69 /* Packages */,
 				C45881C52A3D6F0600C4693E /* YandexToDoList.xctestplan */,
 				C4C859E52A3B775F00DC3E14 /* YandexToDoList */,
 				C4C859FC2A3B776000DC3E14 /* YandexToDoListTests */,
@@ -296,7 +308,6 @@
 			children = (
 				C4C85A172A3B77D000DC3E14 /* TodoItem.swift */,
 				C4C85A192A3B781500DC3E14 /* Importance.swift */,
-				C45881C32A3D640200C4693E /* FileCache.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -319,6 +330,10 @@
 			dependencies = (
 			);
 			name = YandexToDoList;
+			packageProductDependencies = (
+				C4A11E0B2A4FC48500E98E69 /* CocoaLumberjack */,
+				C4A11E112A4FD54300E98E69 /* FileCachePackage */,
+			);
 			productName = YandexToDoList;
 			productReference = C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */;
 			productType = "com.apple.product-type.application";
@@ -391,6 +406,9 @@
 				Base,
 			);
 			mainGroup = C4C859DA2A3B775F00DC3E14;
+			packageReferences = (
+				C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+			);
 			productRefGroup = C4C859E42A3B775F00DC3E14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -494,7 +512,6 @@
 				C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */,
 				C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */,
 				C4D6E2A32A4F7B3A0070AD3C /* NewTodoTableViewCell.swift in Sources */,
-				C45881C42A3D640200C4693E /* FileCache.swift in Sources */,
 				C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */,
 				C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */,
 				C48482822A4C5B3D0010B1BD /* OptionsTodoView.swift in Sources */,
@@ -843,6 +860,29 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C4A11E0B2A4FC48500E98E69 /* CocoaLumberjack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C4A11E0A2A4FC48500E98E69 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjack;
+		};
+		C4A11E112A4FD54300E98E69 /* FileCachePackage */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = FileCachePackage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4C859DB2A3B775F00DC3E14 /* Project object */;
 }

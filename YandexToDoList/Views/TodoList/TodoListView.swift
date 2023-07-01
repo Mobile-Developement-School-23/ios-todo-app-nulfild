@@ -215,7 +215,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ -> UIMenu? in
             // Создайте действия контекстного меню
-            guard let cell = tableView.cellForRow(at: indexPath) as? CustomTableViewCell else { return nil }
+            guard tableView.cellForRow(at: indexPath) is CustomTableViewCell else { return nil }
             let action1 = UIAction(title: "Выполнить", image: UIImage(systemName: "checkmark.circle.fill")) { _ in
                 self.updateCompletition(todoItem: self.getCurrentTodoItem(indexPath: indexPath))
             }
