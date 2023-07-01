@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "Remove.png",
+      "filename" : "Group 1.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Remove 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Remove 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

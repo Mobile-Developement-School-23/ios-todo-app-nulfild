@@ -9,7 +9,7 @@ import UIKit
 
 class OptionsTodoView: UIView {
 
-    var delegate: EditTodoView?
+    weak var delegate: EditTodoView?
     var todoItem: TodoItem?
     
     private lazy var allItemsStackView: UIStackView = {

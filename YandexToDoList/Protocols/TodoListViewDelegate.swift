@@ -9,4 +9,7 @@ import UIKit
 
 protocol TodoListViewDelegate: AnyObject {
     func creatureButtonDidTapped()
+    func didSelectRowAt(_ todoItem: TodoItem?)
+    func saveTodo(_ todoItem: TodoItem)
+    func deleteTodo(_ todoItem: TodoItem)
 }

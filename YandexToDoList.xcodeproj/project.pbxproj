@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */; };
+		C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */; };
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
 		C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E502A49D0CF00E30314 /* CustomLabelView.swift */; };
@@ -30,6 +32,10 @@
 		C4C85A0A2A3B776000DC3E14 /* YandexToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C85A092A3B776000DC3E14 /* YandexToDoListUITestsLaunchTests.swift */; };
 		C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C85A172A3B77D000DC3E14 /* TodoItem.swift */; };
 		C4C85A1A2A3B781500DC3E14 /* Importance.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C85A192A3B781500DC3E14 /* Importance.swift */; };
+		C4D6E2A32A4F7B3A0070AD3C /* NewTodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A22A4F7B3A0070AD3C /* NewTodoTableViewCell.swift */; };
+		C4D6E2A52A4F83270070AD3C /* CustomTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */; };
+		C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */; };
+		C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
+		C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C4375E482A49CC2600E30314 /* EditTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoView.swift; sourceTree = "<group>"; };
 		C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDividerView.swift; sourceTree = "<group>"; };
 		C4375E502A49D0CF00E30314 /* CustomLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
@@ -78,6 +86,10 @@
 		C4C85A092A3B776000DC3E14 /* YandexToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YandexToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C4C85A172A3B77D000DC3E14 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		C4C85A192A3B781500DC3E14 /* Importance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Importance.swift; sourceTree = "<group>"; };
+		C4D6E2A22A4F7B3A0070AD3C /* NewTodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoTableViewCell.swift; sourceTree = "<group>"; };
+		C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDelegate.swift; sourceTree = "<group>"; };
+		C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewDelegate.swift; sourceTree = "<group>"; };
+		C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,9 +117,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C402FBC32A4DA01D00EE2FD6 /* CustomElements */ = {
+			isa = PBXGroup;
+			children = (
+				C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */,
+				C4D6E2A22A4F7B3A0070AD3C /* NewTodoTableViewCell.swift */,
+			);
+			path = CustomElements;
+			sourceTree = "<group>";
+		};
+		C402FBC42A4DA53300EE2FD6 /* InterfaceBlocks */ = {
+			isa = PBXGroup;
+			children = (
+				C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */,
+			);
+			path = InterfaceBlocks;
+			sourceTree = "<group>";
+		};
 		C4375E462A49CA9400E30314 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
+				C402FBC42A4DA53300EE2FD6 /* InterfaceBlocks */,
+				C402FBC32A4DA01D00EE2FD6 /* CustomElements */,
 				C48482872A4C8AC60010B1BD /* TodoListView.swift */,
 			);
 			path = TodoList;
@@ -164,6 +195,7 @@
 				C47F32502A46813C001F94F6 /* UIFont+Extension.swift */,
 				C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */,
 				C48448BC2A46908E000CF120 /* Date+Extension.swift */,
+				C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -173,6 +205,8 @@
 			children = (
 				C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */,
 				C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */,
+				C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */,
+				C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -378,16 +412,22 @@
 				C4C859EB2A3B775F00DC3E14 /* TodoListViewController.swift in Sources */,
 				C48482842A4C64BE0010B1BD /* EditTodoViewDelegate.swift in Sources */,
 				C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */,
+				C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */,
+				C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */,
 				C48448BD2A46908E000CF120 /* Date+Extension.swift in Sources */,
 				C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */,
 				C48482882A4C8AC60010B1BD /* TodoListView.swift in Sources */,
 				C4C859E72A3B775F00DC3E14 /* AppDelegate.swift in Sources */,
 				C4C85A1A2A3B781500DC3E14 /* Importance.swift in Sources */,
+				C4D6E2A52A4F83270070AD3C /* CustomTableViewCellDelegate.swift in Sources */,
 				C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */,
 				C484828A2A4C8C430010B1BD /* TodoListViewDelegate.swift in Sources */,
 				C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */,
+				C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */,
+				C4D6E2A32A4F7B3A0070AD3C /* NewTodoTableViewCell.swift in Sources */,
 				C45881C42A3D640200C4693E /* FileCache.swift in Sources */,
 				C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */,
+				C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */,
 				C48482822A4C5B3D0010B1BD /* OptionsTodoView.swift in Sources */,
 				C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */,
 				C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */,
@@ -580,7 +620,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -608,7 +648,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

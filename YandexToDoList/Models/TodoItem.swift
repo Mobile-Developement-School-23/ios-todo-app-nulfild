@@ -16,7 +16,7 @@ struct TodoItem {
     let createDate: Date
     let editDate: Date?
     
-    init(id: String = "1",  // TODO: Из-за условия тз пришлось поменять, было: UUID().uuidStrin
+    init(id: String = UUID().uuidString,  // TODO: Из-за условия тз пришлось поменять, было: UUID().uuidStrin
          text: String,
          importance: Importance,
          deadline: Date? = nil,
