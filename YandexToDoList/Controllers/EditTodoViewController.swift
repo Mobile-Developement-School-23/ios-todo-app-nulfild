@@ -11,6 +11,7 @@ class EditTodoViewController: UIViewController {
     
     private let todoItem: TodoItem?
     private var editTodoView: EditTodoView?
+    weak var delegate: TodoListViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,28 +30,33 @@ class EditTodoViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
-        print("deinit of EditTodoViewController")
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.updateData()
+    }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.willTransition(to: newCollection, with: coordinator)
+        view.setNeedsUpdateConstraints()
     }
     
     @objc private func cancelButtonDidTapped() {
         dismiss(animated: true)
     }
     @objc private func saveButtonDidTapped() {
-//        let fc = FileCache()
-//        var importance: Importance = .normal
-//        switch importanceView.segmentControl.selectedSegmentIndex {
-//        case 0: importance = .low
-//        case 1: importance = .normal
-//        default: importance = .important
-//        }
-//        let todo = TodoItem(
-//            text: textView.text,
-//            importance: importance,
-//            deadline: importanceView.deadlineSwitch.isOn ? importanceView.datePicker.date : nil
-//        )
-//        fc.add(item: todo)
-//        try? fc.saveToJson(to: "TodoItems")
+        var importance: Importance = .normal
+        switch editTodoView?.optionsTodoView.segmentControl.selectedSegmentIndex {
+        case 0: importance = .low
+        case 1: importance = .normal
+        default: importance = .important
+        }
+        let todo = TodoItem(
+            id: todoItem?.id ?? UUID().uuidString,
+            text: editTodoView?.textView.text ?? "Error",
+            importance: importance,
+            deadline: (editTodoView?.optionsTodoView.deadlineSwitch.isOn ?? false) ? editTodoView?.optionsTodoView.datePicker.date : nil
+        )
+        delegate?.fc.add(item: todo)
+        try? delegate?.fc.saveToJson(to: "TodoItems")
         dismiss(animated: true)
     }
 }
@@ -100,12 +106,10 @@ extension EditTodoViewController: EditTodoViewDelegate {
         }
     }
     
-    func deleteButtonDidTapped() {
+    func deleteButtonDidTapped(_ todoItem: TodoItem) {
         // TODO: Перенести это все в главный контроллер, чтобы не плодить экземпляры FileCache
-        let fc = FileCache()
-        try? fc.loadFromJson(from: "TodoItems")
-        fc.remove(id: "1")
-        try? fc.saveToJson(to: "TodoItems")
+        delegate?.fc.remove(id: todoItem.id)
+        try? delegate?.fc.saveToJson(to: "TodoItems")
         dismiss(animated: true)
     }
     
@@ -140,8 +144,13 @@ extension EditTodoViewController {
         )
         
         cancelButton.tintColor = .blue
-        saveButton.isEnabled = false
-        saveButton.tintColor = .labelTertiary
+        if todoItem != nil {
+            saveButton.isEnabled = true
+            saveButton.tintColor = .blue
+        } else {
+            saveButton.isEnabled = false
+            saveButton.tintColor = .labelTertiary
+        }
         
         navigationItem.leftBarButtonItem = cancelButton
         navigationItem.rightBarButtonItem = saveButton

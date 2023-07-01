@@ -8,26 +8,56 @@
 import UIKit
 
 class TodoListViewController: UIViewController {
-    private var todoListView: TodoListView?
+    var todoListView: TodoListView?
+    let fc = FileCache()
+    private var todoItems: [TodoItem] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupNavBar()
-        let fc = FileCache()
+        updateData()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateData()
+    }
+    
+    func updateData() {
         try? fc.loadFromJson(from: "TodoItems")
-//        creat ionViewController.todoItem = fc.items.first?.value
+        todoItems = Array(fc.items.values)
+        todoItems.sort(by: {$0.createDate > $1.createDate})
+        todoListView?.updateData(todoItems: todoItems)
     }
 }
 
 // MARK: TodoListViewDelegate
 
 extension TodoListViewController: TodoListViewDelegate {
-    func creatureButtonDidTapped() {
-        let editTodoViewController = EditTodoViewController(todoItem: nil)
+    func didSelectRowAt(_ todoItem: TodoItem?) {
+        let editTodoViewController = EditTodoViewController(todoItem: todoItem)
+        editTodoViewController.delegate = self
         let navController = UINavigationController(rootViewController: editTodoViewController)
         present(navController, animated: true)
+    }
+    
+    func creatureButtonDidTapped() {
+        let editTodoViewController = EditTodoViewController(todoItem: nil)
+        editTodoViewController.delegate = self
+        let navController = UINavigationController(rootViewController: editTodoViewController)
+        present(navController, animated: true)
+    }
+    func saveTodo(_ todoItem: TodoItem) {
+        fc.add(item: todoItem)
+        try? fc.saveToJson(to: "TodoItems")
+        updateData()
+    }
+    func deleteTodo(_ todoItem: TodoItem) {
+        fc.remove(id: todoItem.id)
+        try? fc.saveToJson(to: "TodoItems")
+        updateData()
     }
 }
 
@@ -35,7 +65,7 @@ extension TodoListViewController: TodoListViewDelegate {
 
 extension TodoListViewController {
     private func setupView() {
-        todoListView = TodoListView()
+        todoListView = TodoListView(todoItems: todoItems)
         todoListView?.delegate = self
         view = todoListView
     }
@@ -43,6 +73,7 @@ extension TodoListViewController {
     private func setupNavBar() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 0)
     }
 }
 

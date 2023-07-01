@@ -30,7 +30,7 @@ class EditTodoView: UIView {
         return stackView
     }()
     
-    private lazy var textView: UITextView = {
+    lazy var textView: UITextView = {
         let textView = UITextView()
         textView.textContainerInset = UIEdgeInsets(top: 17, left: 16, bottom: 12, right: 16)
         textView.backgroundColor = .backSecondary
@@ -44,7 +44,9 @@ class EditTodoView: UIView {
         return textView
     }()
     
-    private lazy var optionsTodoView = OptionsTodoView()
+    private var textViewHeightConstraint: NSLayoutConstraint?
+    
+    lazy var optionsTodoView = OptionsTodoView()
     
     private lazy var deleteButton: UIButton = {
         let button = UIButton(type: .system)
@@ -75,14 +77,27 @@ class EditTodoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if frame.width > frame.height {
+            textViewHeightConstraint?.constant = frame.height - 76
+        } else {
+            textViewHeightConstraint?.constant = 120
+        }
+    }
+    
     @objc func deleteButtonDidTapped() {
-        delegate?.deleteButtonDidTapped()
+        if let todoItem {
+            delegate?.deleteButtonDidTapped(todoItem)
+        } else {
+            fatalError("ERROR")
+        }
     }
     
     @objc func dismissKeyboard() {
         endEditing(true)
     }
-    
     
     @objc func keyboardDidShow(keyboardShowNotification notification: Notification) {
         if let userInfo = notification.userInfo,
@@ -133,7 +148,6 @@ extension EditTodoView {
         guard let todoItem else {
             return
         }
-
         textView.text = todoItem.text
         textView.textColor = .labelPrimary
 
@@ -170,6 +184,9 @@ extension EditTodoView {
     }
     
     private func setConstraints() {
+        textViewHeightConstraint = textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120)
+        textViewHeightConstraint?.isActive = true
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
@@ -181,8 +198,6 @@ extension EditTodoView {
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -32),
-            
-            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
             deleteButton.heightAnchor.constraint(equalToConstant: 56)
         ])
