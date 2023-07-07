@@ -114,7 +114,7 @@ class CustomTableViewCell: UITableViewCell {
         if doneButton.isSelected {
             updateButton(with: todoItem)
         } else {
-            doneButton.setImage(UIImage(named: "DoneButtonOn"), for: .normal)
+            doneButton.setImage(UIImage(named: "doneButtonOn"), for: .normal)
         }
         doneButton.isSelected.toggle()
         delegate?.saveTodo(TodoItem(id: todoItem.id,
@@ -180,13 +180,13 @@ extension CustomTableViewCell {
     func updateButton(with todo: TodoItem?) {
         guard let todo else { fatalError("Error") }
         if todo.isCompleted {
-            doneButton.setImage(UIImage(named: "DoneButtonOn"), for: .normal)
+            doneButton.setImage(UIImage(named: "doneButtonOn"), for: .normal)
             doneButton.isSelected = true
         } else {
             if todo.importance == .important {
-                doneButton.setImage(UIImage(named: "DoneButtonImportant"), for: .normal)
+                doneButton.setImage(UIImage(named: "doneButtonImportant"), for: .normal)
             } else {
-                doneButton.setImage(UIImage(named: "DoneButton"), for: .normal)
+                doneButton.setImage(UIImage(named: "doneButton"), for: .normal)
             }
         }
     }

@@ -39,6 +39,7 @@
 		C4D6E2A52A4F83270070AD3C /* CustomTableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */; };
 		C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */; };
 		C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */; };
+		C4E2612E2A58BFA30000C11F /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2612D2A58BFA30000C11F /* URLSession+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCellDelegate.swift; sourceTree = "<group>"; };
 		C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewDelegate.swift; sourceTree = "<group>"; };
 		C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		C4E2612D2A58BFA30000C11F /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		CE261C5B79EC33C589FA582A /* Pods-YandexToDoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexToDoList.debug.xcconfig"; path = "Target Support Files/Pods-YandexToDoList/Pods-YandexToDoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 				C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */,
 				C48448BC2A46908E000CF120 /* Date+Extension.swift */,
 				C4D6E2A82A4F8EC70070AD3C /* String+Extension.swift */,
+				C4E2612D2A58BFA30000C11F /* URLSession+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				C48482842A4C64BE0010B1BD /* EditTodoViewDelegate.swift in Sources */,
 				C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */,
 				C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */,
+				C4E2612E2A58BFA30000C11F /* URLSession+Extension.swift in Sources */,
 				C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */,
 				C48448BD2A46908E000CF120 /* Date+Extension.swift in Sources */,
 				C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */,
