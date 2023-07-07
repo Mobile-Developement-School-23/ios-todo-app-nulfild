@@ -42,6 +42,7 @@ class EditTodoViewController: UIViewController {
     @objc private func cancelButtonDidTapped() {
         dismiss(animated: true)
     }
+
     @objc private func saveButtonDidTapped() {
         var importance: Importance = .normal
         switch editTodoView?.optionsTodoView.segmentControl.selectedSegmentIndex {
@@ -142,8 +143,9 @@ extension EditTodoViewController {
             target: self,
             action: #selector(saveButtonDidTapped)
         )
-
+        
         cancelButton.tintColor = .blue
+        
         if todoItem != nil {
             saveButton.isEnabled = true
             saveButton.tintColor = .blue
