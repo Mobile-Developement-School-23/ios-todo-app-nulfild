@@ -19,6 +19,9 @@ class TodoListViewController: UIViewController {
         setupView()
         setupNavBar()
         updateData()
+        
+        // Test dataTask
+        test()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
