@@ -56,8 +56,7 @@ class EditTodoViewController: UIViewController {
             importance: importance,
             deadline: (editTodoView?.optionsTodoView.deadlineSwitch.isOn ?? false) ? editTodoView?.optionsTodoView.datePicker.date : nil
         )
-        _ = delegate?.fc.addItem(todo)
-        try? delegate?.fc.saveToJson(to: "TodoItems")
+        delegate?.saveTodo(todo)
         dismiss(animated: true)
     }
 }
@@ -109,8 +108,7 @@ extension EditTodoViewController: EditTodoViewDelegate {
 
     func deleteButtonDidTapped(_ todoItem: TodoItem) {
         // TODO: Перенести это все в главный контроллер, чтобы не плодить экземпляры FileCache
-        _ = delegate?.fc.deleteItem(with: todoItem.id)
-        try? delegate?.fc.saveToJson(to: "TodoItems")
+        delegate?.deleteTodo(todoItem)
         dismiss(animated: true)
     }
 

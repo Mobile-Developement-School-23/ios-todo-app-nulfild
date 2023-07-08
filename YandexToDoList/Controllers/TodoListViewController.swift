@@ -6,34 +6,44 @@
 //
 
 import UIKit
-import FileCachePackage
 
 class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
-    let fc = FileCache<TodoItem>()
-    private var todoItems: [TodoItem] = []
-
+    var todoItems: [TodoItem] = []
+    var fc = FileCache()
+    let networkingService = DefaultNetworkingService(deviceID: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupNavBar()
         updateData()
-        
-        // Test dataTask
-        test()
     }
-
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         updateData()
     }
-
+    
     func updateData() {
         try? fc.loadFromJson(from: "TodoItems")
-        todoItems = Array(fc.todoItemsList.values)
-        todoItems.sort(by: {$0.createDate > $1.createDate})
-        todoListView?.updateData(todoItems: todoItems)
+        Task(priority: .userInitiated) { [weak self] in
+            guard let self = self else { return }
+            do {
+                let todoList = try await networkingService.getList()
+                todoItems.removeAll()
+                for item in todoList {
+                    todoItems.append(item)
+                }
+                todoItems.sort(by: {$0.createDate > $1.createDate})
+                todoListView?.updateData(todoItems: todoItems)
+                print("UPDATE")
+            } catch {
+                print("Error")
+            }
+        }
+        
     }
 }
 
@@ -46,22 +56,36 @@ extension TodoListViewController: TodoListViewDelegate {
         let navController = UINavigationController(rootViewController: editTodoViewController)
         present(navController, animated: true)
     }
-
+    
     func creatureButtonDidTapped() {
         let editTodoViewController = EditTodoViewController(todoItem: nil)
         editTodoViewController.delegate = self
         let navController = UINavigationController(rootViewController: editTodoViewController)
         present(navController, animated: true)
     }
+    
     func saveTodo(_ todoItem: TodoItem) {
-        _ = fc.addItem(todoItem)
-        try? fc.saveToJson(to: "TodoItems")
-        updateData()
+        fc.add(item: todoItem)
+        if todoItems.contains(where: {$0.id == todoItem.id}) {
+            Task {
+                try await networkingService.putItem(todoItem: todoItem)
+                updateData()
+            }
+        } else {
+            Task {
+                try await networkingService.addItem(todoItem: todoItem)
+                updateData()
+            }
+        }
     }
+    
     func deleteTodo(_ todoItem: TodoItem) {
-        _ = fc.deleteItem(with: todoItem.id)
-        try? fc.saveToJson(to: "TodoItems")
-        updateData()
+        Task {
+            print(todoItem.id)
+            let res = try await networkingService.deleteItemById(id: todoItem.id)
+            updateData()
+        }
+        
     }
 }
 
@@ -73,7 +97,7 @@ extension TodoListViewController {
         todoListView?.delegate = self
         view = todoListView
     }
-
+    
     private func setupNavBar() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true

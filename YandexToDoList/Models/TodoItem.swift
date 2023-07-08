@@ -6,9 +6,8 @@
 //
 
 import Foundation
-import FileCachePackage
 
-struct TodoItem: IdentifiableType {
+struct TodoItem {
     let id: String
     let text: String
     let importance: Importance
@@ -36,7 +35,7 @@ struct TodoItem: IdentifiableType {
 
 // MARK: - JSON format
 
-extension TodoItem: JSONConvertible {
+extension TodoItem {
     var json: [String: Any] {
         var todo: [String: Any] = [:]
         todo["id"] = id
@@ -88,15 +87,15 @@ extension TodoItem: JSONConvertible {
         guard
             let id = (todo["id"] as? String).flatMap({ String($0) }),
             let text = todo["text"] as? String,
-            let createDate = (todo["createDate"] as? Int).flatMap({ Date(timeIntervalSince1970: TimeInterval($0)) })
+            let createDate = (todo["created_at"] as? Int).flatMap({ Date(timeIntervalSince1970: TimeInterval($0)) })
         else {
             return nil
         }
 
         let importance = (todo["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .normal
         let deadline = (todo["deadline"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
-        let isCompleted = (todo["isCompleted"] as? Bool) ?? false
-        let editDate = (todo["editDate"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
+        let isCompleted = (todo["done"] as? Bool) ?? false
+        let editDate = (todo["changed_at"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
 
         return TodoItem(id: id,
                         text: text,
@@ -105,6 +104,25 @@ extension TodoItem: JSONConvertible {
                         isCompleted: isCompleted,
                         createDate: createDate,
                         editDate: editDate)
+    }
+    
+    func parseToJson(deviceId: String) -> [String: Any]{
+        var todoDemo: [String: Any] = [:]
+        todoDemo["id"] = id
+        todoDemo["text"] = text
+        todoDemo["importance"] = importance == .normal ? "basic" : importance.rawValue
+        if let deadline {
+            todoDemo["deadline"] = Int(deadline.timeIntervalSince1970)
+        }
+        todoDemo["done"] = isCompleted
+        todoDemo["created_at"] = Int(createDate.timeIntervalSince1970)
+        if let editDate = editDate {
+            todoDemo["changed_at"] = Int(editDate.timeIntervalSince1970)
+        }
+        todoDemo["last_updated_by"] = deviceId
+        todoDemo["changed_at"] = 0
+        return todoDemo
+        
     }
 
 }
