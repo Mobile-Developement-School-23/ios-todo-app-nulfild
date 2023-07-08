@@ -121,7 +121,6 @@ class DefaultNetworkingService: NetworkingService {
             return nil
         }
         guard goodStatusCodes.contains(response.statusCode) else {
-            print("Code: \(response.statusCode)")
             throw DefaultNetworkingServiceError.badStatusCode
         }
         guard let jsonRaw = try? JSONSerialization.jsonObject(with: data, options: []),
@@ -236,7 +235,6 @@ class DefaultNetworkingService: NetworkingService {
             throw DefaultNetworkingServiceError.unexpectedResponse
         }
         guard response.statusCode != 404 else {
-            print("\nThere is no task with id:\(id)\n")
             throw DefaultNetworkingServiceError.noItemWithId
         }
         guard goodStatusCodes.contains(response.statusCode) else {

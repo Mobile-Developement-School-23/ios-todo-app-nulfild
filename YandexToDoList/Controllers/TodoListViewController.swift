@@ -90,7 +90,6 @@ extension TodoListViewController: TodoListViewDelegate {
     func deleteTodo(_ todoItem: TodoItem) {
         do {
             Task {
-                print(todoItem.id)
                 let res = try await networkingService.deleteItemById(id: todoItem.id)
                 updateData()
             }
