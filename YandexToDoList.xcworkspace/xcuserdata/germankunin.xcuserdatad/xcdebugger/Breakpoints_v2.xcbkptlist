@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "AC5911F5-8D15-459B-B4E7-62C54F17FC71"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4094EE21-BD3B-4E56-91E4-B0F7BF6A5554"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "getList()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4094EE21-BD3B-4E56-91E4-B0F7BF6A5554 - 9029ad48d898a850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  uuid = "4094EE21-BD3B-4E56-91E4-B0F7BF6A5554 - 9029ad48d898a850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "356">
+               </Location>
+               <Location
+                  uuid = "4094EE21-BD3B-4E56-91E4-B0F7BF6A5554 - 9029ad48d898a831"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "364">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A081913-7B0C-4D78-A562-AE8B881CED5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getList()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A081913-7B0C-4D78-A562-AE8B881CED5E - 9029ad48d898a87f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "188">
+               </Location>
+               <Location
+                  uuid = "9A081913-7B0C-4D78-A562-AE8B881CED5E - 9029ad48d898a87f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "180">
+               </Location>
+               <Location
+                  uuid = "9A081913-7B0C-4D78-A562-AE8B881CED5E - 9029ad48d898a850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "getList()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 2ea4c9b4159a1815"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 9029ad48d898a99e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 447a35feaedd89cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 39d8581dd341ed9c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - ed3361474ed24f9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 2ea4c9b4159a19f4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 9029ad48d898a87f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 447a35feaedd882e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - 39d8581dd341ec7d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "82AE1809-915D-4C8A-9A10-CB9D9C40DCC2 - ed3361474ed24e7a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for YandexToDoList.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;YandexToDoList.TodoItem&gt;"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B94E9ED1-42F5-4B8D-806C-F2E84A6D08CB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "makeUrl(path:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B94E9ED1-42F5-4B8D-806C-F2E84A6D08CB - cdf7117be4933484"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YandexToDoList.DefaultNetworkingService.makeUrl(path: Swift.String) throws -&gt; Foundation.URL"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "1680">
+               </Location>
+               <Location
+                  uuid = "B94E9ED1-42F5-4B8D-806C-F2E84A6D08CB - cdf7117be4933484"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "YandexToDoList.DefaultNetworkingService.makeUrl(path: Swift.String) throws -&gt; Foundation.URL"
+                  moduleName = "YandexToDoList"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/germankunin/Developer/Mobile/YandexToDoList/YandexToDoList/Models/DefaultNetworkingService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "259"
+                  endingLineNumber = "259"
+                  offsetFromSymbolStart = "1780">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FEC3908C-C0BD-44DC-8A11-8DDD528804AA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30D7F2BB-7AF8-4E5B-A706-EEB353565BFD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98E6280C-BE2B-4FBB-9724-414BD228E064"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2340A8F8-0C83-4441-B880-31491CFA6274"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CFB5D682-7474-4549-B2EA-7F07E2F27C00"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8297C50F-3F21-4383-B2CC-396563E291C3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YandexToDoList/Models/DefaultNetworkingService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "addItem(todoItem:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

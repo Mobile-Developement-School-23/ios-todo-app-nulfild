@@ -190,7 +190,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
 
-        action.image = UIImage(named: "deleteAction")
+        action.image = UIImage(named: "DeleteAction")
         action.backgroundColor = .red
 
         return UISwipeActionsConfiguration(actions: [action])

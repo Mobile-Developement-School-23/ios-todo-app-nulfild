@@ -165,7 +165,6 @@ extension EditTodoView {
             optionsTodoView.deadlineSwitch.isOn = true
             optionsTodoView.showDeadlineButton(bool: true)
         }
-//        saveButton?.tintColor = .blue
 
         deleteButton.isEnabled = true
     }
