@@ -22,6 +22,14 @@ class DefaultNetworkingService: NetworkingService {
     private let deviceID: String
     private var revision: Int32 = 0
     private let goodStatusCodes = 200..<300
+    var isDirty: Bool {
+        get {
+            UserDefaults.standard.bool(forKey: "isDirty")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "isDirty")
+        }
+    }
     
     init(deviceID: String, urlSession: URLSession = .shared) {
         self.deviceID = deviceID

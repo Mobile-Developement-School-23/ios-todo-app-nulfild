@@ -10,7 +10,6 @@ import UIKit
 class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
     var todoItems: [TodoItem] = []
-    var fc = FileCache()
     let networkingService = DefaultNetworkingService(deviceID: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown")
     
     override func viewDidLoad() {
@@ -27,22 +26,22 @@ class TodoListViewController: UIViewController {
     }
     
     func updateData() {
-        try? fc.loadFromJson(from: "TodoItems")
-        Task(priority: .userInitiated) { [weak self] in
-            guard let self = self else { return }
-            do {
-                let todoList = try await networkingService.getList()
-                todoItems.removeAll()
-                for item in todoList {
-                    todoItems.append(item)
+            Task(priority: .userInitiated) { [weak self] in
+                guard let self = self else { return }
+                do {
+                    let todoList = try await networkingService.getList()
+                    todoItems.removeAll()
+                    for item in todoList {
+                        todoItems.append(item)
+                    }
+                    todoItems.sort(by: {$0.createDate > $1.createDate})
+                    todoListView?.updateData(todoItems: todoItems)
+                } catch {
+                    print("Error")
                 }
-                todoItems.sort(by: {$0.createDate > $1.createDate})
-                todoListView?.updateData(todoItems: todoItems)
-                print("UPDATE")
-            } catch {
-                print("Error")
             }
-        }
+            networkingService.isDirty = false
+        
         
     }
 }
@@ -65,25 +64,42 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func saveTodo(_ todoItem: TodoItem) {
-        fc.add(item: todoItem)
-        if todoItems.contains(where: {$0.id == todoItem.id}) {
-            Task {
-                try await networkingService.putItem(todoItem: todoItem)
-                updateData()
+        do {
+            if todoItems.contains(where: {$0.id == todoItem.id}) {
+                Task {
+                    try await networkingService.putItem(todoItem: todoItem)
+                    updateData()
+                }
+            } else {
+                Task {
+                    try await networkingService.addItem(todoItem: todoItem)
+                    updateData()
+                }
             }
-        } else {
-            Task {
-                try await networkingService.addItem(todoItem: todoItem)
-                updateData()
-            }
+        } catch {
+            networkingService.isDirty = true
+        }
+        
+        
+        if networkingService.isDirty {
+            updateData()
+            networkingService.isDirty = false
         }
     }
     
     func deleteTodo(_ todoItem: TodoItem) {
-        Task {
-            print(todoItem.id)
-            let res = try await networkingService.deleteItemById(id: todoItem.id)
+        do {
+            Task {
+                print(todoItem.id)
+                let res = try await networkingService.deleteItemById(id: todoItem.id)
+                updateData()
+            }
+        } catch {
+            networkingService.isDirty = true
+        }
+        if networkingService.isDirty {
             updateData()
+            networkingService.isDirty = false
         }
         
     }

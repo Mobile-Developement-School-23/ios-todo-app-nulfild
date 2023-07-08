@@ -39,7 +39,6 @@
 		C4E2612E2A58BFA30000C11F /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E2612D2A58BFA30000C11F /* URLSession+Extension.swift */; };
 		C4F38DF62A58E4C30083897B /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F38DF52A58E4C30083897B /* NetworkingService.swift */; };
 		C4F38DF82A58E5170083897B /* DefaultNetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F38DF72A58E5170083897B /* DefaultNetworkingService.swift */; };
-		C4F38DFC2A59139A0083897B /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4F38DFB2A59139A0083897B /* FileCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,7 +97,6 @@
 		C4E2612D2A58BFA30000C11F /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		C4F38DF52A58E4C30083897B /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		C4F38DF72A58E5170083897B /* DefaultNetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNetworkingService.swift; sourceTree = "<group>"; };
-		C4F38DFB2A59139A0083897B /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		CE261C5B79EC33C589FA582A /* Pods-YandexToDoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YandexToDoList.debug.xcconfig"; path = "Target Support Files/Pods-YandexToDoList/Pods-YandexToDoList.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -305,7 +303,6 @@
 				C4C85A172A3B77D000DC3E14 /* TodoItem.swift */,
 				C4C85A192A3B781500DC3E14 /* Importance.swift */,
 				C4F38DF72A58E5170083897B /* DefaultNetworkingService.swift */,
-				C4F38DFB2A59139A0083897B /* FileCache.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -487,7 +484,6 @@
 				C4D6E2A52A4F83270070AD3C /* CustomTableViewCellDelegate.swift in Sources */,
 				C4F38DF82A58E5170083897B /* DefaultNetworkingService.swift in Sources */,
 				C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */,
-				C4F38DFC2A59139A0083897B /* FileCache.swift in Sources */,
 				C484828A2A4C8C430010B1BD /* TodoListViewDelegate.swift in Sources */,
 				C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */,
 				C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */,
