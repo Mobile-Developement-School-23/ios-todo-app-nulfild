@@ -8,5 +8,6 @@
 import Foundation
 
 protocol HeaderTableViewDelegate: AnyObject {
+    @MainActor
     func showButtonDidTapped()
 }

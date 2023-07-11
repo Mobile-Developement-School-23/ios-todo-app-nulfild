@@ -8,5 +8,6 @@
 import Foundation
 
 protocol CustomTableViewCellDelegate: AnyObject {
+    @MainActor
     func saveTodo(_ todo: TodoItem)
 }
