@@ -34,7 +34,7 @@ class TodoListView: UIView {
         let button = UIButton(type: .system)
         button.addTarget(nil, action: #selector(creatureButtonDidTapped), for: .touchUpInside)
         button.layer.cornerRadius = 0.5 * 44
-        button.setImage(UIImage(named: "CreatureButton"), for: .normal)
+        button.setImage(UIImage(named: "creatureButton"), for: .normal)
         button.layer.shadowOpacity = 0.3
         button.layer.shadowRadius = 10
         button.layer.shadowOffset = CGSize(width: 0, height: 8)
@@ -168,7 +168,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
 
-        action.image = UIImage(named: "DoneAction")
+        action.image = UIImage(named: "doneAction")
         action.backgroundColor = .green
 
         return UISwipeActionsConfiguration(actions: [action])
@@ -191,7 +191,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             completion(true)
         }
 
-        action.image = UIImage(named: "DeleteAction")
+        action.image = UIImage(named: "deleteAction")
         action.backgroundColor = .red
 
         return UISwipeActionsConfiguration(actions: [action])
