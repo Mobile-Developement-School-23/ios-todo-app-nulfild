@@ -38,7 +38,7 @@ extension NewTodoTableViewCell {
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 22),
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 52),
             titleLabel.heightAnchor.constraint(equalToConstant: 22),

@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import FileCachePackage
 
 class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
+    let fc = FileCache<TodoItem>()
     var todoItems: [TodoItem] = []
-    let networkingService = DefaultNetworkingService(deviceID: UIDevice.current.identifierForVendor?.uuidString ?? "Unknown")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,23 +27,10 @@ class TodoListViewController: UIViewController {
     }
     
     func updateData() {
-            Task(priority: .userInitiated) { [weak self] in
-                guard let self = self else { return }
-                do {
-                    let todoList = try await networkingService.getList()
-                    todoItems.removeAll()
-                    for item in todoList {
-                        todoItems.append(item)
-                    }
-                    todoItems.sort(by: {$0.createDate > $1.createDate})
-                    todoListView?.updateData(todoItems: todoItems)
-                } catch {
-                    print("Error")
-                }
-            }
-            networkingService.isDirty = false
-        
-        
+        try? fc.loadFromJson(from: "TodoItems")
+        todoItems = Array(fc.todoItemsList.values)
+        todoItems.sort(by: {$0.createDate > $1.createDate})
+        todoListView?.updateData(todoItems: todoItems)
     }
 }
 
@@ -64,35 +52,15 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func saveTodo(_ todoItem: TodoItem) {
-        if todoItems.contains(where: {$0.id == todoItem.id}) {
-            Task {
-                let _ = try await networkingService.putItem(todoItem: todoItem)
-                updateData()
-            }
-        } else {
-            Task {
-                let _ = try await networkingService.addItem(todoItem: todoItem)
-                updateData()
-            }
-        }
-        
-        if networkingService.isDirty {
-            updateData()
-            networkingService.isDirty = false
-        }
+        _ = fc.addItem(todoItem)
+        try? fc.saveToJson(to: "TodoItems")
+        updateData()
     }
     
     func deleteTodo(_ todoItem: TodoItem) {
-        Task {
-            let _ = try await networkingService.deleteItemById(id: todoItem.id)
-            updateData()
-        }
-        
-        if networkingService.isDirty {
-            updateData()
-            networkingService.isDirty = false
-        }
-        
+        _ = fc.deleteItem(with: todoItem.id)
+        try? fc.saveToJson(to: "TodoItems")
+        updateData()
     }
 }
 
