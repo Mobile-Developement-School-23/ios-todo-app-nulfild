@@ -10,10 +10,10 @@
 		108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B364B0D51A783A5E5552C441 /* Pods_YandexToDoList.framework */; };
 		C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */; };
 		C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */; };
+		C42D0DA12A5FFA7E002A3B86 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D0DA02A5FFA7E002A3B86 /* FileCache.swift */; };
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
 		C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E502A49D0CF00E30314 /* CustomLabelView.swift */; };
-		C453C7942A5FF1E800A8480E /* FileCachePackage in Frameworks */ = {isa = PBXBuildFile; productRef = C453C7932A5FF1E800A8480E /* FileCachePackage */; };
 		C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */; };
 		C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */; };
 		C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32502A46813C001F94F6 /* UIFont+Extension.swift */; };
@@ -62,6 +62,7 @@
 		B364B0D51A783A5E5552C441 /* Pods_YandexToDoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YandexToDoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C42D0DA02A5FFA7E002A3B86 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		C4375E482A49CC2600E30314 /* EditTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoView.swift; sourceTree = "<group>"; };
 		C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDividerView.swift; sourceTree = "<group>"; };
 		C4375E502A49D0CF00E30314 /* CustomLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabelView.swift; sourceTree = "<group>"; };
@@ -102,7 +103,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C453C7942A5FF1E800A8480E /* FileCachePackage in Frameworks */,
 				108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -299,6 +299,7 @@
 			children = (
 				C4C85A172A3B77D000DC3E14 /* TodoItem.swift */,
 				C4C85A192A3B781500DC3E14 /* Importance.swift */,
+				C42D0DA02A5FFA7E002A3B86 /* FileCache.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -321,7 +322,6 @@
 			);
 			name = YandexToDoList;
 			packageProductDependencies = (
-				C453C7932A5FF1E800A8480E /* FileCachePackage */,
 			);
 			productName = YandexToDoList;
 			productReference = C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */;
@@ -488,6 +488,7 @@
 				C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */,
 				C48482822A4C5B3D0010B1BD /* OptionsTodoView.swift in Sources */,
 				C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */,
+				C42D0DA12A5FFA7E002A3B86 /* FileCache.swift in Sources */,
 				C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -684,7 +685,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -714,7 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.nulfild.YandexToDoList1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -847,14 +848,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C453C7932A5FF1E800A8480E /* FileCachePackage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C453C7922A5FF1E800A8480E /* XCRemoteSwiftPackageReference "FileCachePackage" */;
-			productName = FileCachePackage;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4C859DB2A3B775F00DC3E14 /* Project object */;
 }

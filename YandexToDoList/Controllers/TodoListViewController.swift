@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import FileCachePackage
 
 class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
-    let fc = FileCache<TodoItem>()
+    let fc = FileCache()
     var todoItems: [TodoItem] = []
     
     override func viewDidLoad() {
@@ -28,7 +27,7 @@ class TodoListViewController: UIViewController {
     
     func updateData() {
         try? fc.loadFromJson(from: "TodoItems")
-        todoItems = Array(fc.todoItemsList.values)
+        todoItems = Array(fc.items.values)
         todoItems.sort(by: {$0.createDate > $1.createDate})
         todoListView?.updateData(todoItems: todoItems)
     }
@@ -52,13 +51,13 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func saveTodo(_ todoItem: TodoItem) {
-        _ = fc.addItem(todoItem)
+        _ = fc.add(item: todoItem)
         try? fc.saveToJson(to: "TodoItems")
         updateData()
     }
     
     func deleteTodo(_ todoItem: TodoItem) {
-        _ = fc.deleteItem(with: todoItem.id)
+        _ = fc.remove(id: todoItem.id)
         try? fc.saveToJson(to: "TodoItems")
         updateData()
     }

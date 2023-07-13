@@ -15,12 +15,16 @@ enum FileCacheError: Error {
 class FileCache {
     private(set) var items: [String: TodoItem] = [:]
 
-    func add(item: TodoItem) {
+    func add(item: TodoItem) -> TodoItem? {
+        let oldItem = items[item.id]
         items[item.id] = item
+        return oldItem
     }
 
-    func remove(id: String) {
+    func remove(id: String) -> TodoItem? {
+        let item = items[id]
         items[id] = nil
+        return item
     }
 
     func saveToJson(to file: String) throws {
@@ -51,54 +55,6 @@ class FileCache {
 
         let todos = json.compactMap { TodoItem.parse(json: $0) }
         self.items = todos.reduce(into: [:]) { dict, item in
-            dict[item.id] = item
-        }
-    }
-
-    func saveToCsv(to file: String) throws {
-        let fm = FileManager.default
-        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileCacheError.wrongNameOfFile
-        }
-
-        let fullPath = dir.appending(component: "\(file).csv")
-        let csv = convertToCsv(from: self.items)
-        let data = csv?.data(using: .utf8)
-        try data?.write(to: fullPath)
-    }
-
-    func loadFromCsv(from file: String) throws {
-        let fm = FileManager.default
-        guard let dir = fm.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            throw FileCacheError.wrongNameOfFile
-        }
-
-        let fullPath = dir.appending(component: "\(file).csv")
-        let data = try Data(contentsOf: fullPath)
-        if let csv = String(data: data, encoding: .utf8) {
-            self.items = convertFromCsv(from: csv)
-        }
-    }
-
-    func convertToCsv(from items: [String: TodoItem]) -> String? {
-        var firstString = "id,text,importance,deadline,isCompleted,createDate,editDate\n"
-        var index = 0
-        for todo in items.values {
-            if index < items.count - 1 {
-                firstString += todo.csv + "\n"
-                index += 1
-            } else {
-                firstString += todo.csv
-            }
-        }
-        return firstString
-    }
-
-    func convertFromCsv(from csv: String) -> [String: TodoItem] {
-        var columns = csv.components(separatedBy: "\n")
-        columns.remove(at: 0)
-        let parsedData = columns.compactMap { TodoItem.parse(csv: $0) }
-        return parsedData.reduce(into: [:]) { dict, item in
             dict[item.id] = item
         }
     }
