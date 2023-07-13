@@ -159,12 +159,12 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completion) in
             guard let self = self else { return }
             var todoItem: TodoItem
-            if isCompletedShowing {
-                todoItem = todoItems[indexPath.row]
+            if self.isCompletedShowing {
+                todoItem = self.todoItems[indexPath.row]
             } else {
-                todoItem = notCompletedTodoItems[indexPath.row]
+                todoItem = self.notCompletedTodoItems[indexPath.row]
             }
-            updateCompletition(todoItem: todoItem)
+            self.updateCompletition(todoItem: todoItem)
             completion(true)
         }
 
@@ -183,11 +183,11 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             guard let self = self else { return }
             var todoItem: TodoItem
             if isCompletedShowing {
-                todoItem = todoItems[indexPath.row]
+                todoItem = self.todoItems[indexPath.row]
             } else {
-                todoItem = notCompletedTodoItems[indexPath.row]
+                todoItem = self.notCompletedTodoItems[indexPath.row]
             }
-            deleteTodo(todoItem: todoItem)
+            self.deleteTodo(todoItem: todoItem)
             completion(true)
         }
 
