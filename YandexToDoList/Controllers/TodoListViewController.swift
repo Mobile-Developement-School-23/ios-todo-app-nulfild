@@ -15,6 +15,13 @@ class TodoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        do { // Тут выбираем, какую бд хотим использовать
+//            try fc.load() // Это sqlite3
+            fc.loadCoreData() // Это CoreData
+        } catch {
+            print(error)
+        }
+        
         setupView()
         setupNavBar()
         updateData()
@@ -26,12 +33,6 @@ class TodoListViewController: UIViewController {
     }
     
     func updateData() {
-        do {
-            try fc.load()
-        } catch {
-            print(error)
-        }
-
         todoItems = Array(fc.items.values)
         todoItems.sort(by: {$0.createDate > $1.createDate})
         todoListView?.updateData(todoItems: todoItems)
@@ -58,8 +59,10 @@ extension TodoListViewController: TodoListViewDelegate {
     func saveTodo(_ todoItem: TodoItem) {
         do {
             if fc.items["\(todoItem.id)"] == nil {
+                fc.insertCoreData(todoItem: todoItem)
                 try fc.insert(todoItem: todoItem)
             } else {
+                fc.updateCoreData(todoItem: todoItem)
                 try fc.update(todoItem: todoItem)
             }
         } catch {
@@ -71,6 +74,7 @@ extension TodoListViewController: TodoListViewDelegate {
     
     func deleteTodo(_ todoItem: TodoItem) {
         do {
+            fc.deleteCoreData(todoItem: todoItem)
             try fc.delete(todoItem: todoItem)
         } catch {
             print(error)

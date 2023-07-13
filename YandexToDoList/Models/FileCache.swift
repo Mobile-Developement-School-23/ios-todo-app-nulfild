@@ -7,6 +7,7 @@
 
 import Foundation
 import SQLite
+import CoreData
 
 enum FileCacheError: Error {
     case wrongNameOfFile
@@ -123,6 +124,8 @@ class FileCache {
     }
 }
 
+// MARK: Настройка БД
+
 extension FileCache {
     private static let id = Expression<String>("id")
     private static let text = Expression<String>("text")
@@ -146,5 +149,98 @@ extension FileCache {
         } catch {
             print(error)
         }
+    }
+}
+
+
+// MARK: Реализация всех методов с помощью CoreData
+extension FileCache {
+    func loadCoreData() {
+        let mainContext = CoreDataManager.shared.mainContext
+        let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
+        do {
+            let results = try mainContext.fetch(fetchRequest)
+            for todo in results {
+                let todoItem = convertToTodoItem(todoItem: todo)
+                items[todoItem.id] = todoItem
+            }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func insertCoreData(todoItem: TodoItem) {
+        let context = CoreDataManager.shared.backgroundContext()
+        context.perform {
+            let entity = TodoItemEntity.entity()
+            let todo = TodoItemEntity(entity: entity, insertInto: context)
+            todo.id = todoItem.id
+            todo.text = todoItem.text
+            todo.importance = todoItem.importance.rawValue
+            todo.deadline = todoItem.deadline
+            todo.isCompleted = todoItem.isCompleted
+            todo.createDate = todoItem.createDate
+            todo.editDate = todoItem.editDate
+            
+            do {
+                try context.save()
+                _ = self.add(item: todoItem)
+            } catch {
+                fatalError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func updateCoreData(todoItem: TodoItem) {
+        let context = CoreDataManager.shared.backgroundContext()
+        let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id = %@", todoItem.id)
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count != 0 {
+                context.delete(results[0])
+                try context.save()
+                insertCoreData(todoItem: todoItem)
+            }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func deleteCoreData(todoItem: TodoItem) {
+        let context = CoreDataManager.shared.backgroundContext()
+        let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id = %@", todoItem.id)
+        do {
+            let results = try context.fetch(fetchRequest)
+            if results.count != 0 {
+                context.delete(results[0])
+                try context.save()
+                _ = self.remove(id: todoItem.id)
+            }
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+    }
+    
+    func convertToTodoItem(todoItem: TodoItemEntity) -> TodoItem {
+        guard
+            let id = todoItem.id,
+            let text = todoItem.text,
+            let importance = todoItem.importance,
+            let createDate = todoItem.createDate
+        else {
+            fatalError("Не получилось конвертировать модель из БД (CoreData)")
+        }
+        
+        let todo = TodoItem.parse(id: id,
+                              text: text,
+                              importance: importance,
+                              deadline: todoItem.deadline,
+                              isCompleted: todoItem.isCompleted,
+                              createDate: createDate,
+                              editDate: todoItem.editDate)
+        guard let todo else { fatalError("Не получилось конвертировать модель из БД (CoreData)") }
+        return todo
     }
 }
