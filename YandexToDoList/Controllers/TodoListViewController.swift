@@ -64,22 +64,17 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func saveTodo(_ todoItem: TodoItem) {
-        do {
-            if todoItems.contains(where: {$0.id == todoItem.id}) {
-                Task {
-                    try await networkingService.putItem(todoItem: todoItem)
-                    updateData()
-                }
-            } else {
-                Task {
-                    try await networkingService.addItem(todoItem: todoItem)
-                    updateData()
-                }
+        if todoItems.contains(where: {$0.id == todoItem.id}) {
+            Task {
+                let _ = try await networkingService.putItem(todoItem: todoItem)
+                updateData()
             }
-        } catch {
-            networkingService.isDirty = true
+        } else {
+            Task {
+                let _ = try await networkingService.addItem(todoItem: todoItem)
+                updateData()
+            }
         }
-        
         
         if networkingService.isDirty {
             updateData()
@@ -88,14 +83,11 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func deleteTodo(_ todoItem: TodoItem) {
-        do {
-            Task {
-                let res = try await networkingService.deleteItemById(id: todoItem.id)
-                updateData()
-            }
-        } catch {
-            networkingService.isDirty = true
+        Task {
+            let _ = try await networkingService.deleteItemById(id: todoItem.id)
+            updateData()
         }
+        
         if networkingService.isDirty {
             updateData()
             networkingService.isDirty = false

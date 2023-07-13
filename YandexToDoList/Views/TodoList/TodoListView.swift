@@ -25,6 +25,7 @@ class TodoListView: UIView {
         tableView.separatorInset = UIEdgeInsets(top: 0.0, left: 52, bottom: 0.0, right: 0)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 112, right: 0)
         tableView.showsVerticalScrollIndicator = false
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()

@@ -8,6 +8,7 @@
 import UIKit
 
 protocol EditTodoViewDelegate: AnyObject {
+    @MainActor
     func textDidBeginEditing(textView: UITextView)
     @MainActor
     func textDidEndEditing(textView: UITextView)

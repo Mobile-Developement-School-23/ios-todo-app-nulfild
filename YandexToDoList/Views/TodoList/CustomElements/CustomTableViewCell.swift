@@ -35,12 +35,14 @@ class CustomTableViewCell: UITableViewCell {
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.spacing = 7
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
 
     private lazy var importanceImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .center
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
@@ -50,6 +52,7 @@ class CustomTableViewCell: UITableViewCell {
         label.font = .body
         label.textColor = .labelPrimary
         label.numberOfLines = 3
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -59,6 +62,7 @@ class CustomTableViewCell: UITableViewCell {
         stack.distribution = .fill
         stack.spacing = 3.5
         stack.isHidden = true
+        stack.translatesAutoresizingMaskIntoConstraints = false
         return stack
     }()
 
@@ -80,6 +84,7 @@ class CustomTableViewCell: UITableViewCell {
         label.text = "23 июля"
         label.font = .subhead
         label.textColor = .labelTertiary
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
@@ -94,20 +99,12 @@ class CustomTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setupView()
+        setConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        if selected {
-//            UIView.animate(withDuration: 0.9, delay: 0.1, animations: {
-//                self.textTodoLabel.textColor = .red
-//            })
-//        }
-//        super.setSelected(selected, animated: animated)
-//    }
 
     @objc func doneButtonDidTapped() {
         guard let todoItem else { fatalError("Error") }
@@ -143,7 +140,6 @@ extension CustomTableViewCell {
         dateStackView.addArrangedSubview(calendarImageView)
         dateStackView.addArrangedSubview(dateLabel)
         contentView.addSubview(arrowImage)
-
     }
 
     func configure(with todo: TodoItem?) {
@@ -194,7 +190,7 @@ extension CustomTableViewCell {
     private func setConstraints() {
         NSLayoutConstraint.activate([
             doneButton.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            doneButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            doneButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             doneButton.widthAnchor.constraint(equalToConstant: 24),
             doneButton.heightAnchor.constraint(equalToConstant: 24),
 
