@@ -26,7 +26,12 @@ class TodoListViewController: UIViewController {
     }
     
     func updateData() {
-        try? fc.loadFromJson(from: "TodoItems")
+        do {
+            try fc.load()
+        } catch {
+            print(error)
+        }
+
         todoItems = Array(fc.items.values)
         todoItems.sort(by: {$0.createDate > $1.createDate})
         todoListView?.updateData(todoItems: todoItems)
@@ -51,14 +56,26 @@ extension TodoListViewController: TodoListViewDelegate {
     }
     
     func saveTodo(_ todoItem: TodoItem) {
-        _ = fc.add(item: todoItem)
-        try? fc.saveToJson(to: "TodoItems")
+        do {
+            if fc.items["\(todoItem.id)"] == nil {
+                try fc.insert(todoItem: todoItem)
+            } else {
+                try fc.update(todoItem: todoItem)
+            }
+        } catch {
+            print(error)
+        }
+        
         updateData()
     }
     
     func deleteTodo(_ todoItem: TodoItem) {
-        _ = fc.remove(id: todoItem.id)
-        try? fc.saveToJson(to: "TodoItems")
+        do {
+            try fc.delete(todoItem: todoItem)
+        } catch {
+            print(error)
+        }
+
         updateData()
     }
 }

@@ -64,6 +64,32 @@ extension TodoItem {
                         editDate: editDate)
     }
     
+    static func parse(id: String,
+                      text: String,
+                      importance: String,
+                      deadline: Date?,
+                      isCompleted: Bool,
+                      createDate: Date,
+                      editDate: Date?) -> TodoItem? {
+        let importanceType: Importance
+        
+        switch importance {
+        case "low":
+            importanceType = .low
+        case "important":
+            importanceType = .important
+        default:
+            importanceType = .normal
+        }
+        
+        return TodoItem(id: id,
+                        text: text,
+                        importance: importanceType,
+                        deadline: deadline,
+                        isCompleted: isCompleted,
+                        createDate: createDate,
+                        editDate: editDate)
+    }
     
     
     var json: Any {

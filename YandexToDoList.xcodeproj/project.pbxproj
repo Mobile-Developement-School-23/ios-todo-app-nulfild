@@ -14,6 +14,7 @@
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
 		C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E502A49D0CF00E30314 /* CustomLabelView.swift */; };
+		C451808E2A5FFC3000238C64 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = C451808D2A5FFC3000238C64 /* SQLite */; };
 		C47F32482A4678C8001F94F6 /* EditTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */; };
 		C47F324D2A467F0D001F94F6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F324C2A467F0D001F94F6 /* UIColor+Extension.swift */; };
 		C47F32512A46813C001F94F6 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47F32502A46813C001F94F6 /* UIFont+Extension.swift */; };
@@ -103,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C451808E2A5FFC3000238C64 /* SQLite in Frameworks */,
 				108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,6 +324,7 @@
 			);
 			name = YandexToDoList;
 			packageProductDependencies = (
+				C451808D2A5FFC3000238C64 /* SQLite */,
 			);
 			productName = YandexToDoList;
 			productReference = C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */;
@@ -397,6 +400,7 @@
 			mainGroup = C4C859DA2A3B775F00DC3E14;
 			packageReferences = (
 				C453C7922A5FF1E800A8480E /* XCRemoteSwiftPackageReference "FileCachePackage" */,
+				C451808C2A5FFC3000238C64 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			productRefGroup = C4C859E42A3B775F00DC3E14 /* Products */;
 			projectDirPath = "";
@@ -839,6 +843,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C451808C2A5FFC3000238C64 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
 		C453C7922A5FF1E800A8480E /* XCRemoteSwiftPackageReference "FileCachePackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nulfild/FileCachePackage.git";
@@ -848,6 +860,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C451808D2A5FFC3000238C64 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C451808C2A5FFC3000238C64 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C4C859DB2A3B775F00DC3E14 /* Project object */;
 }
