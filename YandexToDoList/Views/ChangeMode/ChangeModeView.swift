@@ -8,13 +8,40 @@
 import UIKit
 
 class ChangeModeView: UIView {
+    private lazy var titleLabel: UILabel = {
+        let label = CustomLabel(text: "Какой режим выбрать?")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    init() {
+        super.init(frame: .zero)
+
+        setupView()
+        setConstraints()
     }
-    */
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
 
+extension ChangeModeView {
+    private func setupView() {
+        backgroundColor = .backPrimary
+        addSubview(titleLabel)
+
+//        addSubview(tableView)
+//        addSubview(creatureButton)
+//        addSubview(settingsButton)
+
+    }
+
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
+    }
 }

@@ -10,6 +10,8 @@
 		108E0021954CE10CD3202972 /* Pods_YandexToDoList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B364B0D51A783A5E5552C441 /* Pods_YandexToDoList.framework */; };
 		C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */; };
 		C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */; };
+		C40CFE332A620A940042076D /* ChangeModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CFE322A620A940042076D /* ChangeModeViewController.swift */; };
+		C40CFE362A620AFA0042076D /* ChangeModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40CFE352A620AFA0042076D /* ChangeModeView.swift */; };
 		C42D0DA12A5FFA7E002A3B86 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42D0DA02A5FFA7E002A3B86 /* FileCache.swift */; };
 		C4375E492A49CC2600E30314 /* EditTodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E482A49CC2600E30314 /* EditTodoView.swift */; };
 		C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */; };
@@ -65,6 +67,8 @@
 		B364B0D51A783A5E5552C441 /* Pods_YandexToDoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YandexToDoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C402FBC52A4DA7BE00EE2FD6 /* HeaderTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableView.swift; sourceTree = "<group>"; };
 		C402FBC72A4DAFF400EE2FD6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		C40CFE322A620A940042076D /* ChangeModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeModeViewController.swift; sourceTree = "<group>"; };
+		C40CFE352A620AFA0042076D /* ChangeModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeModeView.swift; sourceTree = "<group>"; };
 		C42D0DA02A5FFA7E002A3B86 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCache.swift; sourceTree = "<group>"; };
 		C4375E482A49CC2600E30314 /* EditTodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoView.swift; sourceTree = "<group>"; };
 		C4375E4E2A49CE6400E30314 /* CustomDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDividerView.swift; sourceTree = "<group>"; };
@@ -164,6 +168,14 @@
 			path = InterfaceBlocks;
 			sourceTree = "<group>";
 		};
+		C40CFE342A620ADD0042076D /* ChangeMode */ = {
+			isa = PBXGroup;
+			children = (
+				C40CFE352A620AFA0042076D /* ChangeModeView.swift */,
+			);
+			path = ChangeMode;
+			sourceTree = "<group>";
+		};
 		C4375E462A49CA9400E30314 /* TodoList */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +218,7 @@
 			children = (
 				C4375E462A49CA9400E30314 /* TodoList */,
 				C4375E472A49CA9E00E30314 /* EditTodo */,
+				C40CFE342A620ADD0042076D /* ChangeMode */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -215,6 +228,7 @@
 			children = (
 				C4C859EA2A3B775F00DC3E14 /* TodoListViewController.swift */,
 				C47F32472A4678C8001F94F6 /* EditTodoViewController.swift */,
+				C40CFE322A620A940042076D /* ChangeModeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -493,7 +507,9 @@
 				C484828A2A4C8C430010B1BD /* TodoListViewDelegate.swift in Sources */,
 				C4C85A182A3B77D000DC3E14 /* TodoItem.swift in Sources */,
 				C4D6E2A92A4F8EC70070AD3C /* String+Extension.swift in Sources */,
+				C40CFE362A620AFA0042076D /* ChangeModeView.swift in Sources */,
 				C4D6E2A32A4F7B3A0070AD3C /* NewTodoTableViewCell.swift in Sources */,
+				C40CFE332A620A940042076D /* ChangeModeViewController.swift in Sources */,
 				C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */,
 				C4D6E2A72A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift in Sources */,
 				C45180932A60142A00238C64 /* CoreDataManager.swift in Sources */,

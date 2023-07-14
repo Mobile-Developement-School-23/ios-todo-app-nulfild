@@ -16,8 +16,8 @@ class TodoListViewController: UIViewController {
         super.viewDidLoad()
         
         do { // Тут выбираем, какую бд хотим использовать
-            try fc.load() // Это sqlite3
-//            try fc.loadCoreData() // Это CoreData
+//            try fc.load() // Это sqlite3
+            try fc.loadCoreData() // Это CoreData
         } catch {
             print(error)
         }
@@ -82,7 +82,14 @@ extension TodoListViewController: TodoListViewDelegate {
 
         updateData()
     }
+
+    func settingsButtonDidTapped() {
+        let changeModeViewController = ChangeModeViewController()
+        changeModeViewController.delegate = self
+        present(ChangeModeViewController(), animated: true)
+    }
 }
+
 
 // MARK: Configuration of View
 

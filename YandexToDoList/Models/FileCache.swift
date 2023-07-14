@@ -22,8 +22,6 @@ class FileCache {
     private var todos: Table
     
     init() {
-//        configureDB() Метод нужно вызвать один раз, оставил, чтобы была видна реализация
-
         var db: Connection?
         var todos: Table?
 
@@ -38,11 +36,14 @@ class FileCache {
         }
         
         guard
-            let db, let todos
+            let db,
+            let todos
         else { fatalError(FileCacheError.dataBaseConnectionError.localizedDescription) }
 
         self.db = db
         self.todos = todos
+        
+        configureDB()
     }
     
     private func add(item: TodoItem) -> TodoItem? {
@@ -57,16 +58,28 @@ class FileCache {
         return item
     }
     
+    func save(todoItem: TodoItem) throws {
+        do {
+            _ = try db.scalar(todoItem.sqlReplaceStatement)
+            _ = add(item: todoItem)
+        } catch {
+            print(error)
+        }
+    }
+    
     func insert(todoItem: TodoItem) throws {
         do {
+            let deadlineString = todoItem.deadline != nil ? String(Int(todoItem.deadline?.timeIntervalSince1970 ?? 0)) : "NULL"
+            let editDateString = todoItem.editDate != nil ? String(Int(todoItem.editDate?.timeIntervalSince1970 ?? 0)) : "NULL"
+
             try db.run(todos.insert(
                 FileCache.id <- todoItem.id,
                 FileCache.text <- todoItem.text,
                 FileCache.importance <- todoItem.importance.rawValue,
-                FileCache.deadline <- todoItem.deadline,
+                FileCache.deadline <- deadlineString,
                 FileCache.isCompleted <- todoItem.isCompleted,
-                FileCache.createDate <- todoItem.createDate,
-                FileCache.editDate <- todoItem.editDate
+                FileCache.createDate <- String(Int(todoItem.createDate.timeIntervalSince1970)),
+                FileCache.editDate <- editDateString
             ))
             _ = add(item: todoItem)
         } catch {
@@ -77,13 +90,17 @@ class FileCache {
     func update(todoItem: TodoItem) throws {
         do {
             let todo = todos.filter(FileCache.id == todoItem.id)
+            
+            let deadlineString = todoItem.deadline != nil ? String(Int(todoItem.deadline?.timeIntervalSince1970 ?? 0)) : "NULL"
+            let editDateString = todoItem.editDate != nil ? String(Int(todoItem.editDate?.timeIntervalSince1970 ?? 0)) : "NULL"
+            
             if try db.run(todo.update(
                 FileCache.text <- todoItem.text,
                 FileCache.importance <- todoItem.importance.rawValue,
-                FileCache.deadline <- todoItem.deadline,
+                FileCache.deadline <- deadlineString,
                 FileCache.isCompleted <- todoItem.isCompleted,
-                FileCache.createDate <- todoItem.createDate,
-                FileCache.editDate <- todoItem.editDate
+                FileCache.createDate <- String(Int(todoItem.createDate.timeIntervalSince1970)),
+                FileCache.editDate <- editDateString
             )) > 0 {
                 _ = add(item: todoItem)
                 
@@ -111,14 +128,24 @@ class FileCache {
     func load() throws {
         do {
             for todo in try db.prepare(todos) {
+                var deadlineDate: Date? = nil
+                if todo[FileCache.deadline] != "NULL" {
+                    deadlineDate = Date(timeIntervalSince1970: TimeInterval(todo[FileCache.deadline] ?? "") ?? 0)
+                }
+                
+                var editDate: Date? = nil
+                if todo[FileCache.editDate] != "NULL" {
+                    editDate = Date(timeIntervalSince1970: TimeInterval(todo[FileCache.editDate] ?? "") ?? 0)
+                }
+                
                 let todoItem = TodoItem.parse(
                     id: todo[FileCache.id],
                     text: todo[FileCache.text],
                     importance: todo[FileCache.importance],
-                    deadline: todo[FileCache.deadline],
+                    deadline: deadlineDate,
                     isCompleted: todo[FileCache.isCompleted],
-                    createDate: todo[FileCache.createDate],
-                    editDate: todo[FileCache.editDate]
+                    createDate: Date(timeIntervalSince1970: TimeInterval(todo[FileCache.createDate]) ?? 0),
+                    editDate: editDate
                 )
                 if let todoItem {
                     items[todoItem.id] = todoItem
@@ -136,14 +163,14 @@ extension FileCache {
     private static let id = Expression<String>("id")
     private static let text = Expression<String>("text")
     private static let importance = Expression<String>("importance")
-    private static let deadline = Expression<Date?>("deadline")
+    private static let deadline = Expression<String?>("deadline")
     private static let isCompleted = Expression<Bool>("isCompleted")
-    private static let createDate = Expression<Date>("createDate")
-    private static let editDate = Expression<Date?>("editDate")
+    private static let createDate = Expression<String>("createDate")
+    private static let editDate = Expression<String?>("editDate")
 
     private func configureDB() {
         do {
-            try db.run(todos.create { t in
+            try db.run(todos.create(ifNotExists: true) { t in
                 t.column(FileCache.id, unique: true)
                 t.column(FileCache.text)
                 t.column(FileCache.importance)

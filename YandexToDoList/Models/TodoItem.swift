@@ -59,6 +59,17 @@ extension TodoItem {
         )
     }
     
+    var sqlReplaceStatement: String {
+        let isCompletedString = isCompleted ? "1" : "0"
+        let deadlineString = deadline != nil ? String(deadline?.timeIntervalSince1970 ?? 0) : "NULL"
+        let createDateString = String(createDate.timeIntervalSince1970)
+        let editDateString = editDate != nil ? String(editDate?.timeIntervalSince1970 ?? 0) : "NULL"
+        return """
+        REPLACE INTO todos (id, text, importance, deadline, isCompleted, createDate, editDate)
+        VALUES ('\(id)', '\(text)', '\(importance.rawValue)', '\(deadlineString)', \(isCompletedString), '\(createDateString)', '\(editDateString)');
+        """
+    }
+    
     var json: Any {
         var todo: [String: Any] = [:]
         todo["id"] = id

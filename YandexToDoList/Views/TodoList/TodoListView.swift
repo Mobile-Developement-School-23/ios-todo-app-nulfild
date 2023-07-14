@@ -41,6 +41,15 @@ class TodoListView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        button.addTarget(nil, action: #selector(settingsButtonDidTapped), for: .touchUpInside)
+        button.layer.zPosition = 9999
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     // MARK: init()
 
@@ -94,6 +103,10 @@ class TodoListView: UIView {
         } else {
             return notCompletedTodoItems[indexPath.row]
         }
+    }
+    
+    @objc func settingsButtonDidTapped() {
+        delegate?.settingsButtonDidTapped()
     }
 }
 
@@ -296,6 +309,7 @@ extension TodoListView {
 
         addSubview(tableView)
         addSubview(creatureButton)
+        addSubview(settingsButton)
 
         tableView.tableHeaderView = headerTableView
     }
@@ -310,7 +324,10 @@ extension TodoListView {
             creatureButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             creatureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             creatureButton.widthAnchor.constraint(equalToConstant: 44),
-            creatureButton.heightAnchor.constraint(equalToConstant: 44)
+            creatureButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            settingsButton.bottomAnchor.constraint(equalTo: creatureButton.bottomAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -25),
         ])
     }
 }
