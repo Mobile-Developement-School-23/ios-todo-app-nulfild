@@ -16,13 +16,15 @@ struct TodoItem {
     let createDate: Date
     let editDate: Date?
     
-    init(id: String = UUID().uuidString,  // TODO: Из-за условия тз пришлось поменять, было: UUID().uuidStrin
-         text: String,
-         importance: Importance,
-         deadline: Date? = nil,
-         isCompleted: Bool = false,
-         createDate: Date = Date(),
-         editDate: Date? = nil) {
+    init(
+        id: String = UUID().uuidString,  // TODO: Из-за условия тз пришлось поменять, было: UUID().uuidStrin
+        text: String,
+        importance: Importance,
+        deadline: Date? = nil,
+        isCompleted: Bool = false,
+        createDate: Date = Date(),
+        editDate: Date? = nil
+    ) {
         self.id = id
         self.text = text
         self.importance = importance
@@ -36,61 +38,26 @@ struct TodoItem {
 // MARK: - JSON format
 
 extension TodoItem {
-    static func parse(json: Any) -> TodoItem? {
-        
-        guard let todo = json as? [String: Any] else {
-            return nil
-        }
-        
-        guard
-            let id = (todo["id"] as? String).flatMap({ String($0) }),
-            let text = todo["text"] as? String,
-            let createDate = (todo["createDate"] as? Int).flatMap({ Date(timeIntervalSince1970: TimeInterval($0)) })
-        else {
-            return nil
-        }
-        
-        let importance = (todo["importance"] as? String).flatMap(Importance.init(rawValue:)) ?? .normal
-        let deadline = (todo["deadline"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
-        let isCompleted = (todo["isCompleted"] as? Bool) ?? false
-        let editDate = (todo["editDate"] as? Int).flatMap { Date(timeIntervalSince1970: TimeInterval($0)) }
-        
-        return TodoItem(id: id,
-                        text: text,
-                        importance: importance,
-                        deadline: deadline,
-                        isCompleted: isCompleted,
-                        createDate: createDate,
-                        editDate: editDate)
+    static func parse(
+        id: String,
+        text: String,
+        importance: String,
+        deadline: Date?,
+        isCompleted: Bool,
+        createDate: Date,
+        editDate: Date?
+    ) -> TodoItem? {
+                
+        return TodoItem(
+            id: id,
+            text: text,
+            importance: Importance(rawValue: importance) ?? .normal,
+            deadline: deadline,
+            isCompleted: isCompleted,
+            createDate: createDate,
+            editDate: editDate
+        )
     }
-    
-    static func parse(id: String,
-                      text: String,
-                      importance: String,
-                      deadline: Date?,
-                      isCompleted: Bool,
-                      createDate: Date,
-                      editDate: Date?) -> TodoItem? {
-        let importanceType: Importance
-        
-        switch importance {
-        case "low":
-            importanceType = .low
-        case "important":
-            importanceType = .important
-        default:
-            importanceType = .normal
-        }
-        
-        return TodoItem(id: id,
-                        text: text,
-                        importance: importanceType,
-                        deadline: deadline,
-                        isCompleted: isCompleted,
-                        createDate: createDate,
-                        editDate: editDate)
-    }
-    
     
     var json: Any {
         var todo: [String: Any] = [:]

@@ -59,13 +59,15 @@ class FileCache {
     
     func insert(todoItem: TodoItem) throws {
         do {
-            try db.run(todos.insert(FileCache.id <- todoItem.id,
-                                    FileCache.text <- todoItem.text,
-                                    FileCache.importance <- todoItem.importance.rawValue,
-                                    FileCache.deadline <- todoItem.deadline,
-                                    FileCache.isCompleted <- todoItem.isCompleted,
-                                    FileCache.createDate <- todoItem.createDate,
-                                    FileCache.editDate <- todoItem.editDate))
+            try db.run(todos.insert(
+                FileCache.id <- todoItem.id,
+                FileCache.text <- todoItem.text,
+                FileCache.importance <- todoItem.importance.rawValue,
+                FileCache.deadline <- todoItem.deadline,
+                FileCache.isCompleted <- todoItem.isCompleted,
+                FileCache.createDate <- todoItem.createDate,
+                FileCache.editDate <- todoItem.editDate
+            ))
             _ = add(item: todoItem)
         } catch {
             print(error)
@@ -75,12 +77,14 @@ class FileCache {
     func update(todoItem: TodoItem) throws {
         do {
             let todo = todos.filter(FileCache.id == todoItem.id)
-            if try db.run(todo.update(FileCache.text <- todoItem.text,
-                                      FileCache.importance <- todoItem.importance.rawValue,
-                                      FileCache.deadline <- todoItem.deadline,
-                                      FileCache.isCompleted <- todoItem.isCompleted,
-                                      FileCache.createDate <- todoItem.createDate,
-                                      FileCache.editDate <- todoItem.editDate)) > 0 {
+            if try db.run(todo.update(
+                FileCache.text <- todoItem.text,
+                FileCache.importance <- todoItem.importance.rawValue,
+                FileCache.deadline <- todoItem.deadline,
+                FileCache.isCompleted <- todoItem.isCompleted,
+                FileCache.createDate <- todoItem.createDate,
+                FileCache.editDate <- todoItem.editDate
+            )) > 0 {
                 _ = add(item: todoItem)
                 
             } else {
@@ -107,13 +111,15 @@ class FileCache {
     func load() throws {
         do {
             for todo in try db.prepare(todos) {
-                let todoItem = TodoItem.parse(id: todo[FileCache.id],
-                                              text: todo[FileCache.text],
-                                              importance: todo[FileCache.importance],
-                                              deadline: todo[FileCache.deadline],
-                                              isCompleted: todo[FileCache.isCompleted],
-                                              createDate: todo[FileCache.createDate],
-                                              editDate: todo[FileCache.editDate])
+                let todoItem = TodoItem.parse(
+                    id: todo[FileCache.id],
+                    text: todo[FileCache.text],
+                    importance: todo[FileCache.importance],
+                    deadline: todo[FileCache.deadline],
+                    isCompleted: todo[FileCache.isCompleted],
+                    createDate: todo[FileCache.createDate],
+                    editDate: todo[FileCache.editDate]
+                )
                 if let todoItem {
                     items[todoItem.id] = todoItem
                 }
@@ -155,7 +161,7 @@ extension FileCache {
 
 // MARK: Реализация всех методов с помощью CoreData
 extension FileCache {
-    func loadCoreData() {
+    func loadCoreData() throws {
         let mainContext = CoreDataManager.shared.mainContext
         let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
         do {
@@ -165,7 +171,7 @@ extension FileCache {
                 items[todoItem.id] = todoItem
             }
         } catch {
-            fatalError(error.localizedDescription)
+            throw error
         }
     }
     
@@ -233,13 +239,15 @@ extension FileCache {
             fatalError("Не получилось конвертировать модель из БД (CoreData)")
         }
         
-        let todo = TodoItem.parse(id: id,
-                              text: text,
-                              importance: importance,
-                              deadline: todoItem.deadline,
-                              isCompleted: todoItem.isCompleted,
-                              createDate: createDate,
-                              editDate: todoItem.editDate)
+        let todo = TodoItem.parse(
+            id: id,
+            text: text,
+            importance: importance,
+            deadline: todoItem.deadline,
+            isCompleted: todoItem.isCompleted,
+            createDate: createDate,
+            editDate: todoItem.editDate
+        )
         guard let todo else { fatalError("Не получилось конвертировать модель из БД (CoreData)") }
         return todo
     }
