@@ -219,11 +219,11 @@ extension FileCache {
             
             do {
                 try context.save()
-                _ = self.add(item: todoItem)
             } catch {
                 fatalError(error.localizedDescription)
             }
         }
+        _ = self.add(item: todoItem)
     }
     
     func updateCoreData(todoItem: TodoItem) {
