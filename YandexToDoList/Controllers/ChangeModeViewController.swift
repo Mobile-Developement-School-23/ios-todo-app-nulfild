@@ -18,9 +18,24 @@ class ChangeModeViewController: UIViewController {
     }
 }
 
+extension ChangeModeViewController: ChangeModeViewDelegate {
+    func sqlButtonDidTapped() {
+        delegate?.isSQLInUse = true
+        delegate?.loadData()
+        dismiss(animated: true)
+    }
+    
+    func coreDataButtonDidTapped() {
+        delegate?.isSQLInUse = false
+        delegate?.loadData()
+        dismiss(animated: true)
+    }
+}
+
 extension ChangeModeViewController {
     private func setupView() {
         changeModeView = ChangeModeView()
+        changeModeView?.delegate = self
         view = changeModeView
     }
 }

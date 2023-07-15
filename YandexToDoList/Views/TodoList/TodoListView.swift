@@ -127,6 +127,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
                 fatalError("Could not load custom table view cell")
             }
             cell.selectionStyle = .none
+            cell.backgroundColor = .backSecondary
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {

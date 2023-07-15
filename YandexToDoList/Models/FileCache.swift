@@ -126,6 +126,7 @@ class FileCache {
     }
 
     func load() throws {
+        items = [:]
         do {
             for todo in try db.prepare(todos) {
                 var deadlineDate: Date? = nil
@@ -189,6 +190,7 @@ extension FileCache {
 // MARK: Реализация всех методов с помощью CoreData
 extension FileCache {
     func loadCoreData() throws {
+        items = [:]
         let mainContext = CoreDataManager.shared.mainContext
         let fetchRequest: NSFetchRequest<TodoItemEntity> = TodoItemEntity.fetchRequest()
         do {

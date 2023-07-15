@@ -27,6 +27,7 @@
 		C48482842A4C64BE0010B1BD /* EditTodoViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */; };
 		C48482882A4C8AC60010B1BD /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482872A4C8AC60010B1BD /* TodoListView.swift */; };
 		C484828A2A4C8C430010B1BD /* TodoListViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */; };
+		C4B326F62A62174C00CE31C8 /* ChangeModeViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4B326F52A62174C00CE31C8 /* ChangeModeViewDelegate.swift */; };
 		C4C859E72A3B775F00DC3E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */; };
 		C4C859E92A3B775F00DC3E14 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */; };
 		C4C859EB2A3B775F00DC3E14 /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4C859EA2A3B775F00DC3E14 /* TodoListViewController.swift */; };
@@ -84,6 +85,7 @@
 		C48482832A4C64BE0010B1BD /* EditTodoViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoViewDelegate.swift; sourceTree = "<group>"; };
 		C48482872A4C8AC60010B1BD /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		C48482892A4C8C430010B1BD /* TodoListViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewDelegate.swift; sourceTree = "<group>"; };
+		C4B326F52A62174C00CE31C8 /* ChangeModeViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeModeViewDelegate.swift; sourceTree = "<group>"; };
 		C4C859E32A3B775F00DC3E14 /* YandexToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4C859E62A3B775F00DC3E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4C859E82A3B775F00DC3E14 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				C4D6E2A42A4F83270070AD3C /* CustomTableViewCellDelegate.swift */,
 				C4D6E2A62A4F8B8D0070AD3C /* HeaderTableViewDelegate.swift */,
 				C4F38DF52A58E4C30083897B /* NetworkingService.swift */,
+				C4B326F52A62174C00CE31C8 /* ChangeModeViewDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				C4375E512A49D0CF00E30314 /* CustomLabelView.swift in Sources */,
 				C402FBC62A4DA7BE00EE2FD6 /* HeaderTableView.swift in Sources */,
 				C402FBC82A4DAFF400EE2FD6 /* CustomTableViewCell.swift in Sources */,
+				C4B326F62A62174C00CE31C8 /* ChangeModeViewDelegate.swift in Sources */,
 				C48448BD2A46908E000CF120 /* Date+Extension.swift in Sources */,
 				C4375E4F2A49CE6400E30314 /* CustomDividerView.swift in Sources */,
 				C48482882A4C8AC60010B1BD /* TodoListView.swift in Sources */,

@@ -11,20 +11,18 @@ class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
     let fc = FileCache()
     var todoItems: [TodoItem] = []
+    var isSQLInUse: Bool = UserDefaults.standard.bool(forKey: "isSQLInUse") {
+        willSet {
+            UserDefaults.standard.setValue("\(newValue)", forKey: "isSQLInUse")
+            UserDefaults.standard.synchronize()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        do { // Тут выбираем, какую бд хотим использовать
-//            try fc.load() // Это sqlite3
-            try fc.loadCoreData() // Это CoreData
-        } catch {
-            print(error)
-        }
-        
         setupView()
         setupNavBar()
-        updateData()
+        loadData()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -36,6 +34,19 @@ class TodoListViewController: UIViewController {
         todoItems = Array(fc.items.values)
         todoItems.sort(by: {$0.createDate > $1.createDate})
         todoListView?.updateData(todoItems: todoItems)
+    }
+    
+    func loadData() {
+        do {
+            if isSQLInUse {
+                try fc.load()
+            } else {
+                try fc.loadCoreData()
+            }
+        } catch {
+            print(error)
+        }
+        updateData()
     }
 }
 
@@ -59,11 +70,9 @@ extension TodoListViewController: TodoListViewDelegate {
     func saveTodo(_ todoItem: TodoItem) {
         do {
             if fc.items["\(todoItem.id)"] == nil {
-                fc.insertCoreData(todoItem: todoItem)
-                try fc.insert(todoItem: todoItem)
+                isSQLInUse ? try fc.insert(todoItem: todoItem) : fc.insertCoreData(todoItem: todoItem)
             } else {
-                fc.updateCoreData(todoItem: todoItem)
-                try fc.update(todoItem: todoItem)
+                isSQLInUse ? try fc.update(todoItem: todoItem) : fc.updateCoreData(todoItem: todoItem)
             }
         } catch {
             print(error)
@@ -74,8 +83,7 @@ extension TodoListViewController: TodoListViewDelegate {
     
     func deleteTodo(_ todoItem: TodoItem) {
         do {
-            fc.deleteCoreData(todoItem: todoItem)
-            try fc.delete(todoItem: todoItem)
+            isSQLInUse ? try fc.delete(todoItem: todoItem) : fc.deleteCoreData(todoItem: todoItem)
         } catch {
             print(error)
         }
@@ -86,7 +94,7 @@ extension TodoListViewController: TodoListViewDelegate {
     func settingsButtonDidTapped() {
         let changeModeViewController = ChangeModeViewController()
         changeModeViewController.delegate = self
-        present(ChangeModeViewController(), animated: true)
+        present(changeModeViewController, animated: true)
     }
 }
 
