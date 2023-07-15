@@ -22,12 +22,14 @@ extension ChangeModeViewController: ChangeModeViewDelegate {
     func sqlButtonDidTapped() {
         delegate?.isSQLInUse = true
         delegate?.loadData()
+        changeModeView?.updateColorOfButtons(isSQLInUse: delegate?.isSQLInUse ?? false)
         dismiss(animated: true)
     }
     
     func coreDataButtonDidTapped() {
         delegate?.isSQLInUse = false
         delegate?.loadData()
+        changeModeView?.updateColorOfButtons(isSQLInUse: delegate?.isSQLInUse ?? false)
         dismiss(animated: true)
     }
 }
@@ -37,5 +39,6 @@ extension ChangeModeViewController {
         changeModeView = ChangeModeView()
         changeModeView?.delegate = self
         view = changeModeView
+        changeModeView?.updateColorOfButtons(isSQLInUse: delegate?.isSQLInUse ?? false)
     }
 }

@@ -11,6 +11,7 @@ class TodoListViewController: UIViewController {
     var todoListView: TodoListView?
     let fc = FileCache()
     var todoItems: [TodoItem] = []
+    var searchText = ""
     var isSQLInUse: Bool = UserDefaults.standard.bool(forKey: "isSQLInUse") {
         willSet {
             UserDefaults.standard.setValue("\(newValue)", forKey: "isSQLInUse")
@@ -23,6 +24,7 @@ class TodoListViewController: UIViewController {
         setupView()
         setupNavBar()
         loadData()
+        configureGestureRecognizer()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -32,21 +34,24 @@ class TodoListViewController: UIViewController {
     
     func updateData() {
         todoItems = Array(fc.items.values)
-        todoItems.sort(by: {$0.createDate > $1.createDate})
+        todoItems.sort(by: { $0.createDate > $1.createDate })
+        if searchText != "" {
+            todoItems = todoItems.filter({ $0.text.contains(searchText) })
+        }
         todoListView?.updateData(todoItems: todoItems)
     }
     
     func loadData() {
         do {
-            if isSQLInUse {
-                try fc.load()
-            } else {
-                try fc.loadCoreData()
-            }
+            isSQLInUse ? try fc.load() : try fc.loadCoreData()
         } catch {
             print(error)
         }
         updateData()
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -96,6 +101,11 @@ extension TodoListViewController: TodoListViewDelegate {
         changeModeViewController.delegate = self
         present(changeModeViewController, animated: true)
     }
+    
+    func searchBarTextDidChanged(text: String) {
+        searchText = text
+        updateData()
+    }
 }
 
 
@@ -111,6 +121,12 @@ extension TodoListViewController {
     private func setupNavBar() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 0)
+        navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 32, bottom: 0, right: 22)
+    }
+    
+    private func configureGestureRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
 }

@@ -57,6 +57,16 @@ class ChangeModeView: UIView {
     @objc private func coreDataButtonDidTapped() {
         delegate?.coreDataButtonDidTapped()
     }
+    
+    func updateColorOfButtons(isSQLInUse: Bool) {
+        if isSQLInUse {
+            sqlButton.backgroundColor = .green
+            coreDataButton.backgroundColor = .backSecondary
+        } else {
+            sqlButton.backgroundColor = .backSecondary
+            coreDataButton.backgroundColor = .green
+        }
+    }
 }
 
 extension ChangeModeView {

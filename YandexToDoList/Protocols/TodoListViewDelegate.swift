@@ -18,4 +18,6 @@ protocol TodoListViewDelegate: AnyObject {
     func deleteTodo(_ todoItem: TodoItem)
     @MainActor
     func settingsButtonDidTapped()
+    @MainActor
+    func searchBarTextDidChanged(text: String)
 }

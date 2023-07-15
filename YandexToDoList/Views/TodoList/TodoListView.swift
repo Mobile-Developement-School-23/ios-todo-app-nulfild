@@ -50,6 +50,15 @@ class TodoListView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "Поиск"
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
+    }()
 
     // MARK: init()
 
@@ -295,6 +304,14 @@ extension TodoListView: HeaderTableViewDelegate {
     }
 }
 
+// MARK:
+
+extension TodoListView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate?.searchBarTextDidChanged(text: searchText)
+    }
+}
+
 // MARK: Configuration of View
 
 extension TodoListView {
@@ -311,13 +328,14 @@ extension TodoListView {
         addSubview(tableView)
         addSubview(creatureButton)
         addSubview(settingsButton)
+        addSubview(searchBar)
 
         tableView.tableHeaderView = headerTableView
     }
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: searchBar.topAnchor, constant: 50),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -329,6 +347,10 @@ extension TodoListView {
             
             settingsButton.bottomAnchor.constraint(equalTo: creatureButton.bottomAnchor),
             settingsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -25),
+            
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
         ])
     }
 }
