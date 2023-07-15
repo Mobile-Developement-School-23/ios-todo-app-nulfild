@@ -41,6 +41,24 @@ class TodoListView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    private lazy var settingsButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        button.addTarget(nil, action: #selector(settingsButtonDidTapped), for: .touchUpInside)
+        button.layer.zPosition = 9999
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.backgroundImage = UIImage()
+        searchBar.placeholder = "Поиск"
+        searchBar.delegate = self
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
+    }()
 
     // MARK: init()
 
@@ -95,6 +113,10 @@ class TodoListView: UIView {
             return notCompletedTodoItems[indexPath.row]
         }
     }
+    
+    @objc func settingsButtonDidTapped() {
+        delegate?.settingsButtonDidTapped()
+    }
 }
 
 // MARK: UITableViewDelegate, UITableViewDataSource
@@ -114,6 +136,7 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
                 fatalError("Could not load custom table view cell")
             }
             cell.selectionStyle = .none
+            cell.backgroundColor = .backSecondary
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.identifier, for: indexPath) as? CustomTableViewCell else {
@@ -159,12 +182,12 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
         let action = UIContextualAction(style: .normal, title: nil) { [weak self] (_, _, completion) in
             guard let self = self else { return }
             var todoItem: TodoItem
-            if isCompletedShowing {
-                todoItem = todoItems[indexPath.row]
+            if self.isCompletedShowing {
+                todoItem = self.todoItems[indexPath.row]
             } else {
-                todoItem = notCompletedTodoItems[indexPath.row]
+                todoItem = self.notCompletedTodoItems[indexPath.row]
             }
-            updateCompletition(todoItem: todoItem)
+            self.updateCompletition(todoItem: todoItem)
             completion(true)
         }
 
@@ -183,11 +206,11 @@ extension TodoListView: UITableViewDelegate, UITableViewDataSource {
             guard let self = self else { return }
             var todoItem: TodoItem
             if isCompletedShowing {
-                todoItem = todoItems[indexPath.row]
+                todoItem = self.todoItems[indexPath.row]
             } else {
-                todoItem = notCompletedTodoItems[indexPath.row]
+                todoItem = self.notCompletedTodoItems[indexPath.row]
             }
-            deleteTodo(todoItem: todoItem)
+            self.deleteTodo(todoItem: todoItem)
             completion(true)
         }
 
@@ -281,6 +304,14 @@ extension TodoListView: HeaderTableViewDelegate {
     }
 }
 
+// MARK:
+
+extension TodoListView: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate?.searchBarTextDidChanged(text: searchText)
+    }
+}
+
 // MARK: Configuration of View
 
 extension TodoListView {
@@ -296,13 +327,15 @@ extension TodoListView {
 
         addSubview(tableView)
         addSubview(creatureButton)
+        addSubview(settingsButton)
+        addSubview(searchBar)
 
         tableView.tableHeaderView = headerTableView
     }
 
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: searchBar.topAnchor, constant: 50),
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -310,7 +343,14 @@ extension TodoListView {
             creatureButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -20),
             creatureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             creatureButton.widthAnchor.constraint(equalToConstant: 44),
-            creatureButton.heightAnchor.constraint(equalToConstant: 44)
+            creatureButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            settingsButton.bottomAnchor.constraint(equalTo: creatureButton.bottomAnchor),
+            settingsButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -25),
+            
+            searchBar.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            searchBar.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -10),
         ])
     }
 }

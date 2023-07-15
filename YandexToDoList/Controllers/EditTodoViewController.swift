@@ -120,7 +120,7 @@ extension EditTodoViewController {
     private func setupView() {
         editTodoView = EditTodoView(todoItem: todoItem)
         editTodoView?.delegate = self
-        view = self.editTodoView
+        view = editTodoView
     }
 
     private func setupNavBar() {

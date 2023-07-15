@@ -134,8 +134,8 @@ class OptionsTodoView: UIView {
         if bool {
             UIView.animate(withDuration: 0.5, animations: { [weak self] in
                 guard let self = self else { return }
-                self.deadlineButton.alpha = deadlineSwitch.isOn ? 1.0 : 0.0
-                self.deadlineButton.isHidden = deadlineSwitch.isOn ? false : true
+                self.deadlineButton.alpha = self.deadlineSwitch.isOn ? 1.0 : 0.0
+                self.deadlineButton.isHidden = self.deadlineSwitch.isOn ? false : true
             })
         } else {
             self.deadlineButton.alpha = 0
