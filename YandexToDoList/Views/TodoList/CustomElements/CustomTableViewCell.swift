@@ -182,7 +182,9 @@ extension CustomTableViewCell {
             if todo.importance == .important {
                 doneButton.setImage(UIImage(named: "doneButtonImportant"), for: .normal)
             } else {
-                doneButton.setImage(UIImage(named: "doneButton"), for: .normal)
+                let image = UIImage(named: "doneButton")
+                let tint = UIColor.supportSeparator.withAlphaComponent(1)
+                doneButton.setImage(image?.withTintColor(tint), for: .normal)
             }
         }
     }
