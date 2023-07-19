@@ -36,7 +36,7 @@ class TodoListViewController: UIViewController {
         todoItems = Array(fc.items.values)
         todoItems.sort(by: { $0.createDate > $1.createDate })
         if searchText != "" {
-            todoItems = todoItems.filter({ $0.text.contains(searchText) })
+            todoItems = todoItems.filter({ $0.text.lowercased().contains(searchText.lowercased()) })
         }
         todoListView?.updateData(todoItems: todoItems)
     }
